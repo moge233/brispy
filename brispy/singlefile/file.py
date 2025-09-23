@@ -4,7 +4,7 @@
 import csv
 import os
 
-from abstract import DataFile
+from brispy.abstract import DataFile
 from .row import SingleFileRow
 
 

@@ -1,7 +1,7 @@
 #! python3
 
 
-from abstract import Owner
+from brispy.abstract import Owner
 from .utils import get_todays_owner, get_owners_silks
 
 

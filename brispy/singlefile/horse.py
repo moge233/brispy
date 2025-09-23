@@ -1,7 +1,7 @@
 #! python3
 
 
-from abstract import Horse, PastPerformance
+from brispy.abstract import Horse, PastPerformance
 from .jockey import SingleFileJockey
 from .owner import SingleFileOwner
 from .trainer import SingleFileTrainer

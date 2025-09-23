@@ -1,7 +1,7 @@
 #! python3
 
 
-from abstract import Trainer
+from brispy.abstract import Trainer
 from .utils import get_todays_trainer, get_todays_trainer_starts, get_todays_trainer_wins, get_todays_trainer_places, \
     get_todays_trainer_shows, get_trainer_current_year_starts, get_trainer_current_year_wins, \
     get_trainer_current_year_places, get_trainer_current_year_shows, get_trainer_current_year_roi, \

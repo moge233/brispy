@@ -1,7 +1,7 @@
 #! python3
 
 
-from abstract import SpecialEnum
+from brispy.abstract import SpecialEnum
 from .index import SingleFileIndex
 
 

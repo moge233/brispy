@@ -1,7 +1,7 @@
 #! python3
 
 
-from abstract import Workout
+from brispy.abstract import Workout
 from .utils import get_workout_date, get_workout_time, get_workout_track, get_workout_distance, \
     get_workout_track_condition, get_workout_description, get_workout_main_inner_track_indicator, \
     get_workout_number_of_works, get_workout_rank, WorkoutNumber

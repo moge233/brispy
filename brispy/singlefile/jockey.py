@@ -1,7 +1,7 @@
 #! python3
 
 
-from abstract import Jockey
+from brispy.abstract import Jockey
 from .utils import get_apprentice_weight_allowed, get_todays_jockey, get_todays_jockey_starts, get_todays_jockey_wins, \
     get_todays_jockey_places, get_todays_jockey_shows, get_jockey_current_year_starts, get_jockey_current_year_wins, \
     get_jockey_current_year_places, get_jockey_current_year_shows, get_jockey_current_year_roi, \
