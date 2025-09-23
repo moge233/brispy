@@ -452,7 +452,7 @@ class SingleFileHorse(Horse):
         self.mud_pedigree_rating: str = mud_pedigree_rating
         self.turf_pedigree_rating: str = turf_pedigree_rating
         self.distance_pedigree_rating: str = distance_pedigree_rating
-        self. best_bris_speed_life: int = best_bris_speed_life
+        self.best_bris_speed_life: int = best_bris_speed_life
         self.best_bris_speed_most_recent_year: int = best_bris_speed_most_recent_year
         self.best_bris_speed_second_most_recent_year: int = best_bris_speed_second_most_recent_year
         self.best_bris_speed_todays_track: int = best_bris_speed_todays_track
