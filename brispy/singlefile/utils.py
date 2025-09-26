@@ -1264,6 +1264,13 @@ def get_horse_earnings_fast_dirt_track(row: list[str]) -> int:
     return __try_get_int(row, SingleFileIndex.HORSE_EARNINGS_FAST_DIRT_TRACK_INDEX)
 
 
+def get_past_performance_all_weather_surface_flag(row: list[str], number: PastPerformanceNumber) -> str:
+    return __try_get_str(
+        row,
+        getattr(SingleFileIndex, f'PAST_PERFORMANCE_ALL_WEATHER_SURFACE_FLAG{number.value}_INDEX')
+    )
+
+
 __all__ = [
     "get_track",
     "get_date",
@@ -1516,4 +1523,5 @@ __all__ = [
     "get_horse_places_fast_dirt_track",
     "get_horse_shows_fast_dirt_track",
     "get_horse_earnings_fast_dirt_track",
+    "get_past_performance_all_weather_surface_flag",
 ]
