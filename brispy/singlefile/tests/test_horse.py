@@ -7,7 +7,7 @@ from unittest import TestCase
 from brispy.singlefile.file import SingleFile
 
 
-class TestSingleFile(TestCase):
+class TestSingleFileHorse(TestCase):
 
     TEST_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'TESTDRF.drf')
 
@@ -15,7 +15,9 @@ class TestSingleFile(TestCase):
     def setUpClass(cls):
         cls.sf = SingleFile.create(cls.TEST_PATH)
 
-    def test_create(self):
-        self.assertIsInstance(self.sf, SingleFile)
-        self.assertIsNotNone(self.sf.rows)
-        self.assertIsInstance(self.sf.rows, list)
+    def test_row_horse(self):
+        row = self.sf.rows[0]
+        horse = row.horse
+        self.assertIsNotNone(horse)
+        self.assertIsNotNone(horse.name)
+        self.assertIsInstance(horse.name, str)
