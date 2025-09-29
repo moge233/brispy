@@ -6,7 +6,10 @@ from .utils import get_todays_trainer, get_todays_trainer_starts, get_todays_tra
     get_todays_trainer_shows, get_trainer_current_year_starts, get_trainer_current_year_wins, \
     get_trainer_current_year_places, get_trainer_current_year_shows, get_trainer_current_year_roi, \
     get_trainer_previous_year_starts, get_trainer_previous_year_wins, get_trainer_previous_year_places, \
-    get_trainer_previous_year_shows, get_trainer_previous_year_roi
+    get_trainer_previous_year_shows, get_trainer_previous_year_roi, get_trainer_key_stat_category, \
+    get_trainer_key_stat_number_of_starts, get_trainer_key_stat_win_percentage, get_trainer_key_stat_itm_percentage, \
+    get_trainer_key_stat_roi, \
+    TrainerKeyStatNumber
 
 
 class SingleFileTrainer(Trainer):
@@ -14,23 +17,71 @@ class SingleFileTrainer(Trainer):
                  current_year_starts: int, current_year_wins: int, current_year_places: int,
                  current_year_shows: int, current_year_roi: float,
                  previous_year_starts: int, previous_year_wins: int, previous_year_places: int,
-                 previous_year_shows: int, previous_year_roi: float):
+                 previous_year_shows: int, previous_year_roi: float,
+                 trainer_key_stat1_category: str, trainer_key_stat1_number_of_starts: int,
+                 trainer_key_stat1_win_percentage: float, trainer_key_stat1_itm_percentage: float,
+                 trainer_key_stat1_roi: float,
+                 trainer_key_stat2_category: str, trainer_key_stat2_number_of_starts: int,
+                 trainer_key_stat2_win_percentage: float, trainer_key_stat2_itm_percentage: float,
+                 trainer_key_stat2_roi: float,
+                 trainer_key_stat3_category: str, trainer_key_stat3_number_of_starts: int,
+                 trainer_key_stat3_win_percentage: float, trainer_key_stat3_itm_percentage: float,
+                 trainer_key_stat3_roi: float,
+                 trainer_key_stat4_category: str, trainer_key_stat4_number_of_starts: int,
+                 trainer_key_stat4_win_percentage: float, trainer_key_stat4_itm_percentage: float,
+                 trainer_key_stat4_roi: float,
+                 trainer_key_stat5_category: str, trainer_key_stat5_number_of_starts: int,
+                 trainer_key_stat5_win_percentage: float, trainer_key_stat5_itm_percentage: float,
+                 trainer_key_stat5_roi: float,
+                 trainer_key_stat6_category: str, trainer_key_stat6_number_of_starts: int,
+                 trainer_key_stat6_win_percentage: float, trainer_key_stat6_itm_percentage: float,
+                 trainer_key_stat6_roi: float):
         super().__init__()
-        self.name: str = name                                   # 30 characters
-        self.starts: int = starts                               # 4 digits
-        self.wins: int = wins                                   # 3 digits
-        self.places: int = places                               # 3 digits
-        self.shows: int = shows                                 # 3 digits
-        self.current_year_starts: int = current_year_starts     # 4 digits
-        self.current_year_wins: int = current_year_wins         # 4 digits
-        self.current_year_places: int = current_year_places     # 4 digits
-        self.current_year_shows: int = current_year_shows       # 4 digits
-        self.current_year_roi: float = current_year_roi         # 6 digits
-        self.prevous_year_starts: int = previous_year_starts    # 4 digits
-        self.prevous_year_wins: int = previous_year_wins        # 4 digits
-        self.prevous_year_places: int = previous_year_places    # 4 digits
-        self.prevous_year_shows: int = previous_year_shows      # 4 digits
-        self.prevous_year_roi: float = previous_year_roi        # 6 digits
+        self.name: str = name                                                               # 30 characters
+        self.starts: int = starts                                                           # 4 digits
+        self.wins: int = wins                                                               # 3 digits
+        self.places: int = places                                                           # 3 digits
+        self.shows: int = shows                                                             # 3 digits
+        self.current_year_starts: int = current_year_starts                                 # 4 digits
+        self.current_year_wins: int = current_year_wins                                     # 4 digits
+        self.current_year_places: int = current_year_places                                 # 4 digits
+        self.current_year_shows: int = current_year_shows                                   # 4 digits
+        self.current_year_roi: float = current_year_roi                                     # 6 digits
+        self.prevous_year_starts: int = previous_year_starts                                # 4 digits
+        self.prevous_year_wins: int = previous_year_wins                                    # 4 digits
+        self.prevous_year_places: int = previous_year_places                                # 4 digits
+        self.prevous_year_shows: int = previous_year_shows                                  # 4 digits
+        self.prevous_year_roi: float = previous_year_roi                                    # 6 digits
+        self.trainer_key_stat_category1: str = trainer_key_stat1_category                   # 16 characters
+        self.trainer_key_stat1_number_of_starts: int = trainer_key_stat1_number_of_starts   # 4 digits
+        self.trainer_key_stat1_win_percentage: float = trainer_key_stat1_win_percentage     # 5 digits
+        self.trainer_key_stat1_itm_percentage: float = trainer_key_stat1_itm_percentage     # 5 digits
+        self.trainer_key_stat1_roi: float = trainer_key_stat1_roi                           # 5 digits
+        self.trainer_key_stat2_category2: str = trainer_key_stat2_category                   # 16 characters
+        self.trainer_key_stat2_number_of_starts: int = trainer_key_stat2_number_of_starts   # 4 digits
+        self.trainer_key_stat2_win_percentage: float = trainer_key_stat2_win_percentage     # 5 digits
+        self.trainer_key_stat2_itm_percentage: float = trainer_key_stat2_itm_percentage     # 5 digits
+        self.trainer_key_stat2_roi: float = trainer_key_stat2_roi                           # 5 digits
+        self.trainer_key_stat3_category: str = trainer_key_stat3_category                   # 16 characters
+        self.trainer_key_stat3_number_of_starts: int = trainer_key_stat3_number_of_starts   # 4 digits
+        self.trainer_key_stat3_win_percentage: float = trainer_key_stat3_win_percentage     # 5 digits
+        self.trainer_key_stat3_itm_percentage: float = trainer_key_stat3_itm_percentage     # 5 digits
+        self.trainer_key_stat3_roi: float = trainer_key_stat3_roi                           # 5 digits
+        self.trainer_key_stat4_category: str = trainer_key_stat4_category                   # 16 characters
+        self.trainer_key_stat4_number_of_starts: int = trainer_key_stat4_number_of_starts   # 4 digits
+        self.trainer_key_stat4_win_percentage: float = trainer_key_stat4_win_percentage     # 5 digits
+        self.trainer_key_stat4_itm_percentage: float = trainer_key_stat4_itm_percentage     # 5 digits
+        self.trainer_key_stat4_roi: float = trainer_key_stat4_roi                           # 5 digits
+        self.trainer_key_stat5_category: str = trainer_key_stat5_category                   # 16 characters
+        self.trainer_key_stat5_number_of_starts: int = trainer_key_stat5_number_of_starts   # 4 digits
+        self.trainer_key_stat5_win_percentage: float = trainer_key_stat5_win_percentage     # 5 digits
+        self.trainer_key_stat5_itm_percentage: float = trainer_key_stat5_itm_percentage     # 5 digits
+        self.trainer_key_stat5_roi: float = trainer_key_stat5_roi                           # 5 digits
+        self.trainer_key_stat6_category: str = trainer_key_stat6_category                   # 16 characters
+        self.trainer_key_stat6_number_of_starts: int = trainer_key_stat6_number_of_starts   # 4 digits
+        self.trainer_key_stat6_win_percentage: float = trainer_key_stat6_win_percentage     # 5 digits
+        self.trainer_key_stat6_itm_percentage: float = trainer_key_stat6_itm_percentage     # 5 digits
+        self.trainer_key_stat6_roi: float = trainer_key_stat6_roi                           # 5 digits
 
     def __str__(self):
         ret = ''
@@ -62,4 +113,34 @@ class SingleFileTrainer(Trainer):
             get_trainer_previous_year_places(row),
             get_trainer_previous_year_shows(row),
             get_trainer_previous_year_roi(row),
+            get_trainer_key_stat_category(row, TrainerKeyStatNumber.ONE),
+            get_trainer_key_stat_number_of_starts(row, TrainerKeyStatNumber.ONE),
+            get_trainer_key_stat_win_percentage(row, TrainerKeyStatNumber.ONE),
+            get_trainer_key_stat_itm_percentage(row, TrainerKeyStatNumber.ONE),
+            get_trainer_key_stat_roi(row, TrainerKeyStatNumber.ONE),
+            get_trainer_key_stat_category(row, TrainerKeyStatNumber.TWO),
+            get_trainer_key_stat_number_of_starts(row, TrainerKeyStatNumber.TWO),
+            get_trainer_key_stat_win_percentage(row, TrainerKeyStatNumber.TWO),
+            get_trainer_key_stat_itm_percentage(row, TrainerKeyStatNumber.TWO),
+            get_trainer_key_stat_roi(row, TrainerKeyStatNumber.TWO),
+            get_trainer_key_stat_category(row, TrainerKeyStatNumber.THREE),
+            get_trainer_key_stat_number_of_starts(row, TrainerKeyStatNumber.THREE),
+            get_trainer_key_stat_win_percentage(row, TrainerKeyStatNumber.THREE),
+            get_trainer_key_stat_itm_percentage(row, TrainerKeyStatNumber.THREE),
+            get_trainer_key_stat_roi(row, TrainerKeyStatNumber.THREE),
+            get_trainer_key_stat_category(row, TrainerKeyStatNumber.FOUR),
+            get_trainer_key_stat_number_of_starts(row, TrainerKeyStatNumber.FOUR),
+            get_trainer_key_stat_win_percentage(row, TrainerKeyStatNumber.FOUR),
+            get_trainer_key_stat_itm_percentage(row, TrainerKeyStatNumber.FOUR),
+            get_trainer_key_stat_roi(row, TrainerKeyStatNumber.FOUR),
+            get_trainer_key_stat_category(row, TrainerKeyStatNumber.FIVE),
+            get_trainer_key_stat_number_of_starts(row, TrainerKeyStatNumber.FIVE),
+            get_trainer_key_stat_win_percentage(row, TrainerKeyStatNumber.FIVE),
+            get_trainer_key_stat_itm_percentage(row, TrainerKeyStatNumber.FIVE),
+            get_trainer_key_stat_roi(row, TrainerKeyStatNumber.FIVE),
+            get_trainer_key_stat_category(row, TrainerKeyStatNumber.SIX),
+            get_trainer_key_stat_number_of_starts(row, TrainerKeyStatNumber.SIX),
+            get_trainer_key_stat_win_percentage(row, TrainerKeyStatNumber.SIX),
+            get_trainer_key_stat_itm_percentage(row, TrainerKeyStatNumber.SIX),
+            get_trainer_key_stat_roi(row, TrainerKeyStatNumber.SIX)
         )

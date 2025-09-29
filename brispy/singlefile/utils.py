@@ -33,6 +33,15 @@ class PastPerformanceNumber(SpecialEnum):
     TEN = 10
 
 
+class TrainerKeyStatNumber(SpecialEnum):
+    ONE = 1
+    TWO = 2
+    THREE = 3
+    FOUR = 4
+    FIVE = 5
+    SIX = 6
+
+
 def __try_get_str(row: list[str], index: SingleFileIndex) -> str:
     try:
         return row[index.value].rstrip()
@@ -1264,11 +1273,120 @@ def get_horse_earnings_fast_dirt_track(row: list[str]) -> int:
     return __try_get_int(row, SingleFileIndex.HORSE_EARNINGS_FAST_DIRT_TRACK_INDEX)
 
 
+def get_trainer_key_stat_category(row: list[str], number: TrainerKeyStatNumber) -> str:
+    return __try_get_str(
+        row,
+        getattr(SingleFileIndex, f'TRAINER_KEY_STAT{number.value}_CATEGORY_INDEX')
+    )
+
+
+def get_trainer_key_stat_number_of_starts(row: list[str], number: TrainerKeyStatNumber) -> int:
+    return __try_get_int(
+        row,
+        getattr(SingleFileIndex, f'TRAINER_KEY_STAT{number.value}_NUMBER_OF_STARTS_INDEX')
+    )
+
+
+def get_trainer_key_stat_win_percentage(row: list[str], number: TrainerKeyStatNumber) -> float:
+    return __try_get_float(
+        row,
+        getattr(SingleFileIndex, f'TRAINER_KEY_STAT{number.value}_WIN_PERCENTAGE_INDEX')
+    )
+
+
+def get_trainer_key_stat_itm_percentage(row: list[str], number: TrainerKeyStatNumber) -> float:
+    return __try_get_float(
+        row,
+        getattr(SingleFileIndex, f'TRAINER_KEY_STAT{number.value}_ITM_PERCENTAGE_INDEX')
+    )
+
+
+def get_trainer_key_stat_roi(row: list[str], number: TrainerKeyStatNumber) -> float:
+    return __try_get_float(
+        row,
+        getattr(SingleFileIndex, f'TRAINER_KEY_STAT{number.value}_ROI_INDEX')
+    )
+
+
+def get_jockey_at_distance_on_turf_label(row: list[str]) -> str:
+    return __try_get_str(row, SingleFileIndex.JOCKEY_AT_DISTANCE_ON_TURF_LABEL_INDEX)
+
+
+def get_jockey_at_distance_on_turf_starts(row: list[str]) -> int:
+    return __try_get_int(row, SingleFileIndex.JOCKEY_AT_DISTANCE_ON_TURF_STARTS_INDEX)
+
+
+def get_jockey_at_distance_on_turf_wins(row: list[str]) -> int:
+    return __try_get_int(row, SingleFileIndex.JOCKEY_AT_DISTANCE_ON_TURF_WINS_INDEX)
+
+
+def get_jockey_at_distance_on_turf_places(row: list[str]) -> int:
+    return __try_get_int(row, SingleFileIndex.JOCKEY_AT_DISTANCE_ON_TURF_PLACES_INDEX)
+
+
+def get_jockey_at_distance_on_turf_shows(row: list[str]) -> int:
+    return __try_get_int(row, SingleFileIndex.JOCKEY_AT_DISTANCE_ON_TURF_SHOWS_INDEX)
+
+
+def get_jockey_at_distance_on_turf_roi(row: list[str]) -> float:
+    return __try_get_float(row, SingleFileIndex.JOCKEY_AT_DISTANCE_ON_TURF_ROI_INDEX)
+
+
+def get_jockey_at_distance_on_turf_earnings(row: list[str]) -> int:
+    return __try_get_int(row, SingleFileIndex.JOCKEY_AT_DISTANCE_ON_TURF_EARNINGS_INDEX)
+
+
+def get_post_times_by_region(row: list[str]) -> str:
+    return __try_get_str(row, SingleFileIndex.POST_TIMES_BY_REGION_INDEX)
+
+
+def get_past_performance_sealed_track_indicator(row: list[str], number: PastPerformanceNumber) -> str:
+    return __try_get_str(
+        row,
+        getattr(SingleFileIndex, f'PAST_PERFORMANCE_SEALED_TRACK_INDICATOR{number.value}_INDEX')
+    )
+
+
 def get_past_performance_all_weather_surface_flag(row: list[str], number: PastPerformanceNumber) -> str:
     return __try_get_str(
         row,
         getattr(SingleFileIndex, f'PAST_PERFORMANCE_ALL_WEATHER_SURFACE_FLAG{number.value}_INDEX')
     )
+
+
+def get_trainer_jockey_combo_meet_starts(row: list[str]) -> int:
+    return __try_get_int(row, SingleFileIndex.TRAINER_JOCKEY_COMBO_MEET_STARTS_INDEX)
+
+
+def get_trainer_jockey_combo_meet_wins(row: list[str]) -> int:
+    return __try_get_int(row, SingleFileIndex.TRAINER_JOCKEY_COMBO_MEET_WINS_INDEX)
+
+
+def get_trainer_jockey_combo_meet_places(row: list[str]) -> int:
+    return __try_get_int(row, SingleFileIndex.TRAINER_JOCKEY_COMBO_MEET_PLACES_INDEX)
+
+
+def get_trainer_jockey_combo_meet_shows(row: list[str]) -> int:
+    return __try_get_int(row, SingleFileIndex.TRAINER_JOCKEY_COMBO_MEET_SHOWS_INDEX)
+
+
+def get_trainer_jockey_combo_meet_roi(row: list[str]) -> float:
+    return __try_get_float(row, SingleFileIndex.TRAINER_JOCKEY_COMBO_MEET_ROI_INDEX)
+
+
+def get_post_time_pacific_military(row: list[str]) -> str:
+    return __try_get_str(row, SingleFileIndex.POST_TIME_PACIFIC_MILITARY_INDEX)
+
+
+def get_past_performance_equibase_abbreviated_race_conditions(row: list[str], number: PastPerformanceNumber) -> str:
+    return __try_get_str(
+        row,
+        getattr(SingleFileIndex, f'PAST_PERFORMANCE_EQUIBASE_ABBREVIATED_RACE_CONDITIONS{number.value}_INDEX')
+    )
+
+
+def get_todays_equibase_abbreviated_race_conditions(row: list[str]) -> str:
+    return __try_get_str(row, SingleFileIndex.TODAYS_EQUIBASE_ABBREVIATED_RACE_CONDITIONS_INDEX)
 
 
 __all__ = [
@@ -1523,5 +1641,26 @@ __all__ = [
     "get_horse_places_fast_dirt_track",
     "get_horse_shows_fast_dirt_track",
     "get_horse_earnings_fast_dirt_track",
+    "get_trainer_key_stat_category",
+    "get_trainer_key_stat_number_of_starts",
+    "get_trainer_key_stat_win_percentage",
+    "get_trainer_key_stat_itm_percentage",
+    "get_trainer_key_stat_roi",
+    "get_jockey_at_distance_on_turf_label",
+    "get_jockey_at_distance_on_turf_starts",
+    "get_jockey_at_distance_on_turf_wins",
+    "get_jockey_at_distance_on_turf_places",
+    "get_jockey_at_distance_on_turf_shows",
+    "get_jockey_at_distance_on_turf_roi",
+    "get_jockey_at_distance_on_turf_earnings",
+    "get_post_times_by_region",
+    "get_past_performance_sealed_track_indicator",
     "get_past_performance_all_weather_surface_flag",
+    "get_trainer_jockey_combo_meet_starts",
+    "get_trainer_jockey_combo_meet_wins",
+    "get_trainer_jockey_combo_meet_places",
+    "get_trainer_jockey_combo_meet_shows",
+    "get_trainer_jockey_combo_meet_roi",
+    "get_post_time_pacific_military",
+    "get_todays_equibase_abbreviated_race_conditions",
 ]

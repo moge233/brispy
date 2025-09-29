@@ -74,7 +74,8 @@ from .utils import get_horse_name, get_horse_year_of_birth, get_horse_foaling_mo
     get_bris_distance_pedigree_rating, get_best_bris_speed_life, get_best_bris_speed_most_recent_year, \
     get_best_bris_speed_second_most_recent_year, get_best_bris_speed_todays_track, get_horse_starts_fast_dirt_track, \
     get_horse_wins_fast_dirt_track, get_horse_places_fast_dirt_track, get_horse_shows_fast_dirt_track, \
-    get_horse_earnings_fast_dirt_track, get_past_performance_all_weather_surface_flag, \
+    get_horse_earnings_fast_dirt_track, get_past_performance_sealed_track_indicator, \
+    get_past_performance_all_weather_surface_flag, get_past_performance_equibase_abbreviated_race_conditions, \
     WorkoutNumber, PastPerformanceNumber
 
 
@@ -104,7 +105,8 @@ class SingleFilePastPerformance(PastPerformance):
                  race_type: str, age_and_sex_restrictions: str, state_bred_flag: str, restricted_qualifier_flag: str,
                  favorite_indicator: str, front_bandages_indicator: str, class_speed_par: int, bar_shoe: str,
                  company_line_codes: str, low_claiming_price_of_race: int, high_claiming_price_of_race: int,
-                 start_code: str, all_weather_surface_flag: str):
+                 start_code: str, sealed_track_indicator: str, all_weather_surface_flag: str,
+                 equibase_abbreviated_race_conditions: str):
         super().__init__()
         self.date: str = date
         self.days_since_previous_race: int = days_since_previous_race
@@ -195,7 +197,9 @@ class SingleFilePastPerformance(PastPerformance):
         self.low_claiming_price_of_race: int = low_claiming_price_of_race
         self.high_claiming_price_of_race: int = high_claiming_price_of_race
         self.start_code: str = start_code
-        self.all_weather_surface_flag = all_weather_surface_flag
+        self.sealed_track_indicator: str = sealed_track_indicator
+        self.all_weather_surface_flag: str = all_weather_surface_flag
+        self.equibase_abbreviated_race_conditions: str = equibase_abbreviated_race_conditions
 
     def __str__(self):
         ret = ''
@@ -301,7 +305,9 @@ class SingleFilePastPerformance(PastPerformance):
             get_past_performance_low_claiming_price_of_race(row, number),
             get_past_performance_high_claiming_price_of_race(row, number),
             get_past_performance_start_code(row, number),
-            get_past_performance_all_weather_surface_flag(row, number)
+            get_past_performance_sealed_track_indicator(row, number),
+            get_past_performance_all_weather_surface_flag(row, number),
+            get_past_performance_equibase_abbreviated_race_conditions(row, number),
         )
 
 
