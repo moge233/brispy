@@ -2,6 +2,9 @@
 
 
 from .horse import SingleFileHorse
+from .jockey import SingleFileJockey
+from .owner import SingleFileOwner
+from .trainer import SingleFileTrainer
 from .utils import get_track, get_date, get_race_number, get_post_position, get_entry, get_distance, \
     get_surface, get_race_type, get_age_sex_restrictions, get_classification, get_purse, get_claiming_price, \
     get_claiming_price_of_horse, get_track_record, get_race_conditions, get_todays_lasix_list, \
@@ -11,7 +14,9 @@ from .utils import get_track, get_date, get_race_number, get_post_position, get_
     get_bris_pace_par_six_furlongs, get_bris_speed_par, get_bris_late_pace_par, get_trainer_jockey_combo_starts, \
     get_trainer_jockey_combo_wins, get_trainer_jockey_combo_places, get_trainer_jockey_combo_shows, \
     get_trainer_jockey_combo_roi, get_complete_race_conditions, get_low_claiming_price, \
-    get_state_bred_flag, get_wager_types
+    get_state_bred_flag, get_wager_types, get_trainer_jockey_combo_meet_starts, get_trainer_jockey_combo_meet_wins, \
+    get_trainer_jockey_combo_meet_places, get_trainer_jockey_combo_meet_shows, get_trainer_jockey_combo_meet_roi, \
+    get_post_time_pacific_military, get_todays_equibase_abbreviated_race_conditions
 
 
 class SingleFileRow:
@@ -22,11 +27,15 @@ class SingleFileRow:
                  todays_lasix_list: str, todays_bute_list: str, todays_coupled_list: str, todays_mutuel_list: str,
                  simulcast_host_track_code: str, simulcast_host_track_race_number: int, breed_type: str,
                  todays_nasal_strip_change: int, todays_all_weather_surface_flag: str, horse: SingleFileHorse,
+                 trainer: SingleFileTrainer, jockey: SingleFileJockey, owner: SingleFileOwner,
                  bris_pace_par_two_furlongs: int, bris_pace_par_four_furlongs: int, bris_pace_par_six_furlongs: int,
                  bris_speed_par: int, bris_late_pace_par: int, trainer_jockey_combo_starts: int,
                  trainer_jockey_combo_wins: int, trainer_jockey_combo_places: int, trainer_jockey_combo_shows: int,
                  trainer_jockey_combo_roi: int, complete_race_conditions: str, low_claiming_price: int,
-                 state_bred_flag: str, wager_types: str):
+                 state_bred_flag: str, wager_types: str, trainer_jockey_combo_meet_starts: int,
+                 trainer_jockey_combo_meet_wins: int, trainer_jockey_combo_meet_places: int,
+                 trainer_jockey_combo_meet_shows: int, trainer_jockey_combo_meet_roi: float,
+                 post_time_pacific_military: str, todays_equibase_abbreviated_race_conditions: str):
         self.track: str = track                                                         # 3 characters
         self.date: str = date                                                           # 8 characters
         self.race_number: int = race_number                                             # 2 digits
@@ -52,6 +61,9 @@ class SingleFileRow:
         self.todays_nasal_strip_change: int = todays_nasal_strip_change                 # 1 digit
         self.todays_all_weather_surface_flag: str = todays_all_weather_surface_flag     # 1 character
         self.horse: SingleFileHorse = horse                                             #
+        self.trainer: SingleFileTrainer = trainer                                       #
+        self.jockey: SingleFileJockey = jockey                                          #
+        self.owner: SingleFileOwner = owner                                             #
         self.bris_par_two_furlongs: int = bris_pace_par_two_furlongs                    # 3 digits
         self.bris_par_four_furlongs: int = bris_pace_par_four_furlongs                  # 3 digits
         self.bris_par_six_furlongs: int = bris_pace_par_six_furlongs                    # 3 digits
@@ -66,6 +78,13 @@ class SingleFileRow:
         self.low_claiming_price: int = low_claiming_price                               # 7 digits
         self.state_bred_flag: str = state_bred_flag                                     # 1 character
         self.wager_types: str = wager_types                                             # 50 characters
+        self.trainer_jockey_combo_meet_starts: int = trainer_jockey_combo_meet_starts   # 4 digits
+        self.trainer_jockey_combo_meet_wins: int = trainer_jockey_combo_meet_wins       # 4 digits
+        self.trainer_jockey_combo_meet_places: int = trainer_jockey_combo_meet_places   # 4 digits
+        self.trainer_jockey_combo_meet_shows: int = trainer_jockey_combo_meet_shows     # 4 digits
+        self.trainer_jockey_combo_meet_roi: float = trainer_jockey_combo_meet_roi       # 6 digits
+        self.post_time_pacific_military: str = post_time_pacific_military               # 4 characters
+        self.todays_equibase_abbreviated_race_conditions: str = todays_equibase_abbreviated_race_conditions
 
     def __str__(self):
         ret = ''
@@ -107,6 +126,9 @@ class SingleFileRow:
             todays_nasal_strip_change=get_todays_nasal_strip_change(row),
             todays_all_weather_surface_flag=get_todays_all_weather_surface_flag(row),
             horse=SingleFileHorse.create(row),
+            trainer=SingleFileTrainer.create(row),
+            jockey=SingleFileJockey.create(row),
+            owner=SingleFileOwner.create(row),
             bris_pace_par_two_furlongs=get_bris_pace_par_two_furlongs(row),
             bris_pace_par_four_furlongs=get_bris_pace_par_four_furlongs(row),
             bris_pace_par_six_furlongs=get_bris_pace_par_six_furlongs(row),
@@ -120,7 +142,14 @@ class SingleFileRow:
             complete_race_conditions=get_complete_race_conditions(row),
             low_claiming_price=get_low_claiming_price(row),
             state_bred_flag=get_state_bred_flag(row),
-            wager_types=get_wager_types(row)
+            wager_types=get_wager_types(row),
+            trainer_jockey_combo_meet_starts=get_trainer_jockey_combo_meet_starts(row),
+            trainer_jockey_combo_meet_wins=get_trainer_jockey_combo_meet_wins(row),
+            trainer_jockey_combo_meet_places=get_trainer_jockey_combo_meet_places(row),
+            trainer_jockey_combo_meet_shows=get_trainer_jockey_combo_meet_shows(row),
+            trainer_jockey_combo_meet_roi=get_trainer_jockey_combo_meet_roi(row),
+            post_time_pacific_military=get_post_time_pacific_military(row),
+            todays_equibase_abbreviated_race_conditions=get_todays_equibase_abbreviated_race_conditions(row)
         )
 
     def distance_to_furlongs(self) -> float:

@@ -1,10 +1,7 @@
 #! python3
 
 
-from abstract import Horse, PastPerformance
-from .jockey import SingleFileJockey
-from .owner import SingleFileOwner
-from .trainer import SingleFileTrainer
+from brispy.abstract import Horse, PastPerformance
 from .record import SingleFileRecord, SingleFileRecordWithYear
 from .workout import SingleFileWorkout
 from .utils import get_horse_name, get_horse_year_of_birth, get_horse_foaling_month, get_horse_sex, \
@@ -74,7 +71,8 @@ from .utils import get_horse_name, get_horse_year_of_birth, get_horse_foaling_mo
     get_bris_distance_pedigree_rating, get_best_bris_speed_life, get_best_bris_speed_most_recent_year, \
     get_best_bris_speed_second_most_recent_year, get_best_bris_speed_todays_track, get_horse_starts_fast_dirt_track, \
     get_horse_wins_fast_dirt_track, get_horse_places_fast_dirt_track, get_horse_shows_fast_dirt_track, \
-    get_horse_earnings_fast_dirt_track, \
+    get_horse_earnings_fast_dirt_track, get_past_performance_sealed_track_indicator, \
+    get_past_performance_all_weather_surface_flag, get_past_performance_equibase_abbreviated_race_conditions, \
     WorkoutNumber, PastPerformanceNumber
 
 
@@ -104,7 +102,8 @@ class SingleFilePastPerformance(PastPerformance):
                  race_type: str, age_and_sex_restrictions: str, state_bred_flag: str, restricted_qualifier_flag: str,
                  favorite_indicator: str, front_bandages_indicator: str, class_speed_par: int, bar_shoe: str,
                  company_line_codes: str, low_claiming_price_of_race: int, high_claiming_price_of_race: int,
-                 start_code: str):
+                 start_code: str, sealed_track_indicator: str, all_weather_surface_flag: str,
+                 equibase_abbreviated_race_conditions: str):
         super().__init__()
         self.date: str = date
         self.days_since_previous_race: int = days_since_previous_race
@@ -195,6 +194,9 @@ class SingleFilePastPerformance(PastPerformance):
         self.low_claiming_price_of_race: int = low_claiming_price_of_race
         self.high_claiming_price_of_race: int = high_claiming_price_of_race
         self.start_code: str = start_code
+        self.sealed_track_indicator: str = sealed_track_indicator
+        self.all_weather_surface_flag: str = all_weather_surface_flag
+        self.equibase_abbreviated_race_conditions: str = equibase_abbreviated_race_conditions
 
     def __str__(self):
         ret = ''
@@ -300,6 +302,9 @@ class SingleFilePastPerformance(PastPerformance):
             get_past_performance_low_claiming_price_of_race(row, number),
             get_past_performance_high_claiming_price_of_race(row, number),
             get_past_performance_start_code(row, number),
+            get_past_performance_sealed_track_indicator(row, number),
+            get_past_performance_all_weather_surface_flag(row, number),
+            get_past_performance_equibase_abbreviated_race_conditions(row, number),
         )
 
 
@@ -394,16 +399,15 @@ class SingleFileHorseStats:
 class SingleFileHorse(Horse):
     def __init__(self, name: str, year_of_birth: int, foaling_month: int, sex: str, color: str, weight: int,
                  sire: str, sires_sire: str, dam: str, dams_sire: str, breeder: str, where: str, post_position: int,
-                 trainer: SingleFileTrainer, jockey: SingleFileJockey, owner: SingleFileOwner, mto_ae_indicator: str,
-                 program_number: str, morning_line_odds: float, stats: SingleFileHorseStats, equipment_change: int,
-                 workouts: list[SingleFileWorkout], bris_run_style_designation: str, quirin_speed_points: int,
-                 lifetime_starts_all_weather_surface: int, lifetime_wins_all_weather_surface: int,
-                 lifetime_places_all_weather_surface: int, lifetime_shows_all_weather_surface: int,
-                 lifetime_earnings_all_weather_surface: int, best_bris_speed_all_weather_surface: int,
-                 bris_prime_power_rating: float, past_performances: list[SingleFilePastPerformance],
-                 sire_stud_fee: int, best_bris_speed_fast_track: int, best_bris_speed_turf: int,
-                 best_bris_speed_off_track: int, best_bris_speed_distance: int, auction_price: int,
-                 auction_location: str,
+                 mto_ae_indicator: str, program_number: str, morning_line_odds: float, stats: SingleFileHorseStats,
+                 equipment_change: int, workouts: list[SingleFileWorkout], bris_run_style_designation: str,
+                 quirin_speed_points: int, lifetime_starts_all_weather_surface: int,
+                 lifetime_wins_all_weather_surface: int, lifetime_places_all_weather_surface: int,
+                 lifetime_shows_all_weather_surface: int, lifetime_earnings_all_weather_surface: int,
+                 best_bris_speed_all_weather_surface: int, bris_prime_power_rating: float,
+                 past_performances: list[SingleFilePastPerformance], sire_stud_fee: int,
+                 best_bris_speed_fast_track: int, best_bris_speed_turf: int, best_bris_speed_off_track: int,
+                 best_bris_speed_distance: int, auction_price: int, auction_location: str,
                  dirt_pedigree_rating: str, mud_pedigree_rating: str, turf_pedigree_rating: str,
                  distance_pedigree_rating: str, best_bris_speed_life: int, best_bris_speed_most_recent_year: int,
                  best_bris_speed_second_most_recent_year: int, best_bris_speed_todays_track: int,
@@ -422,9 +426,6 @@ class SingleFileHorse(Horse):
         self.breeder: str = breeder
         self.where: str = where
         self.post_position: int = post_position
-        self.trainer: SingleFileTrainer = trainer
-        self.jockey: SingleFileJockey = jockey
-        self.owner: SingleFileOwner = owner
         self.mto_ae_indicator: str = mto_ae_indicator
         self.program_number: str = program_number
         self.morning_line_odds: float = morning_line_odds
@@ -490,9 +491,6 @@ class SingleFileHorse(Horse):
             get_horse_breeder(row),
             get_horse_where(row),
             get_horse_program_post_position(row),
-            SingleFileTrainer.create(row),
-            SingleFileJockey.create(row),
-            SingleFileOwner.create(row),
             get_mto_ae_indicator(row),
             get_program_number(row),
             get_morning_line_odds(row),

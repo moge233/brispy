@@ -1,0 +1,46 @@
+digraph "packages" {
+rankdir=BT
+charset="utf-8"
+"brispy" [color="black", label=<brispy>, shape="box", style="solid"];
+"brispy.abstract" [color="black", label=<brispy.abstract>, shape="box", style="solid"];
+"brispy.singlefile" [color="black", label=<brispy.singlefile>, shape="box", style="solid"];
+"brispy.singlefile.file" [color="black", label=<brispy.singlefile.file>, shape="box", style="solid"];
+"brispy.singlefile.horse" [color="black", label=<brispy.singlefile.horse>, shape="box", style="solid"];
+"brispy.singlefile.index" [color="black", label=<brispy.singlefile.index>, shape="box", style="solid"];
+"brispy.singlefile.jockey" [color="black", label=<brispy.singlefile.jockey>, shape="box", style="solid"];
+"brispy.singlefile.owner" [color="black", label=<brispy.singlefile.owner>, shape="box", style="solid"];
+"brispy.singlefile.record" [color="black", label=<brispy.singlefile.record>, shape="box", style="solid"];
+"brispy.singlefile.row" [color="black", label=<brispy.singlefile.row>, shape="box", style="solid"];
+"brispy.singlefile.trainer" [color="black", label=<brispy.singlefile.trainer>, shape="box", style="solid"];
+"brispy.singlefile.utils" [color="black", label=<brispy.singlefile.utils>, shape="box", style="solid"];
+"brispy.singlefile.workout" [color="black", label=<brispy.singlefile.workout>, shape="box", style="solid"];
+"brispy.singlefile" -> "brispy.singlefile.file" [arrowhead="open", arrowtail="none"];
+"brispy.singlefile" -> "brispy.singlefile.horse" [arrowhead="open", arrowtail="none"];
+"brispy.singlefile" -> "brispy.singlefile.jockey" [arrowhead="open", arrowtail="none"];
+"brispy.singlefile" -> "brispy.singlefile.owner" [arrowhead="open", arrowtail="none"];
+"brispy.singlefile" -> "brispy.singlefile.record" [arrowhead="open", arrowtail="none"];
+"brispy.singlefile" -> "brispy.singlefile.row" [arrowhead="open", arrowtail="none"];
+"brispy.singlefile" -> "brispy.singlefile.trainer" [arrowhead="open", arrowtail="none"];
+"brispy.singlefile" -> "brispy.singlefile.workout" [arrowhead="open", arrowtail="none"];
+"brispy.singlefile.file" -> "brispy.abstract" [arrowhead="open", arrowtail="none"];
+"brispy.singlefile.file" -> "brispy.singlefile.row" [arrowhead="open", arrowtail="none"];
+"brispy.singlefile.horse" -> "brispy.abstract" [arrowhead="open", arrowtail="none"];
+"brispy.singlefile.horse" -> "brispy.singlefile.record" [arrowhead="open", arrowtail="none"];
+"brispy.singlefile.horse" -> "brispy.singlefile.utils" [arrowhead="open", arrowtail="none"];
+"brispy.singlefile.horse" -> "brispy.singlefile.workout" [arrowhead="open", arrowtail="none"];
+"brispy.singlefile.jockey" -> "brispy.abstract" [arrowhead="open", arrowtail="none"];
+"brispy.singlefile.jockey" -> "brispy.singlefile.utils" [arrowhead="open", arrowtail="none"];
+"brispy.singlefile.owner" -> "brispy.abstract" [arrowhead="open", arrowtail="none"];
+"brispy.singlefile.owner" -> "brispy.singlefile.utils" [arrowhead="open", arrowtail="none"];
+"brispy.singlefile.row" -> "brispy.singlefile.horse" [arrowhead="open", arrowtail="none"];
+"brispy.singlefile.row" -> "brispy.singlefile.jockey" [arrowhead="open", arrowtail="none"];
+"brispy.singlefile.row" -> "brispy.singlefile.owner" [arrowhead="open", arrowtail="none"];
+"brispy.singlefile.row" -> "brispy.singlefile.trainer" [arrowhead="open", arrowtail="none"];
+"brispy.singlefile.row" -> "brispy.singlefile.utils" [arrowhead="open", arrowtail="none"];
+"brispy.singlefile.trainer" -> "brispy.abstract" [arrowhead="open", arrowtail="none"];
+"brispy.singlefile.trainer" -> "brispy.singlefile.utils" [arrowhead="open", arrowtail="none"];
+"brispy.singlefile.utils" -> "brispy.abstract" [arrowhead="open", arrowtail="none"];
+"brispy.singlefile.utils" -> "brispy.singlefile.index" [arrowhead="open", arrowtail="none"];
+"brispy.singlefile.workout" -> "brispy.abstract" [arrowhead="open", arrowtail="none"];
+"brispy.singlefile.workout" -> "brispy.singlefile.utils" [arrowhead="open", arrowtail="none"];
+}
