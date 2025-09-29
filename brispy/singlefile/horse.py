@@ -2,9 +2,6 @@
 
 
 from brispy.abstract import Horse, PastPerformance
-from .jockey import SingleFileJockey
-from .owner import SingleFileOwner
-from .trainer import SingleFileTrainer
 from .record import SingleFileRecord, SingleFileRecordWithYear
 from .workout import SingleFileWorkout
 from .utils import get_horse_name, get_horse_year_of_birth, get_horse_foaling_month, get_horse_sex, \
@@ -402,16 +399,15 @@ class SingleFileHorseStats:
 class SingleFileHorse(Horse):
     def __init__(self, name: str, year_of_birth: int, foaling_month: int, sex: str, color: str, weight: int,
                  sire: str, sires_sire: str, dam: str, dams_sire: str, breeder: str, where: str, post_position: int,
-                 trainer: SingleFileTrainer, jockey: SingleFileJockey, owner: SingleFileOwner, mto_ae_indicator: str,
-                 program_number: str, morning_line_odds: float, stats: SingleFileHorseStats, equipment_change: int,
-                 workouts: list[SingleFileWorkout], bris_run_style_designation: str, quirin_speed_points: int,
-                 lifetime_starts_all_weather_surface: int, lifetime_wins_all_weather_surface: int,
-                 lifetime_places_all_weather_surface: int, lifetime_shows_all_weather_surface: int,
-                 lifetime_earnings_all_weather_surface: int, best_bris_speed_all_weather_surface: int,
-                 bris_prime_power_rating: float, past_performances: list[SingleFilePastPerformance],
-                 sire_stud_fee: int, best_bris_speed_fast_track: int, best_bris_speed_turf: int,
-                 best_bris_speed_off_track: int, best_bris_speed_distance: int, auction_price: int,
-                 auction_location: str,
+                 mto_ae_indicator: str, program_number: str, morning_line_odds: float, stats: SingleFileHorseStats,
+                 equipment_change: int, workouts: list[SingleFileWorkout], bris_run_style_designation: str,
+                 quirin_speed_points: int, lifetime_starts_all_weather_surface: int,
+                 lifetime_wins_all_weather_surface: int, lifetime_places_all_weather_surface: int,
+                 lifetime_shows_all_weather_surface: int, lifetime_earnings_all_weather_surface: int,
+                 best_bris_speed_all_weather_surface: int, bris_prime_power_rating: float,
+                 past_performances: list[SingleFilePastPerformance], sire_stud_fee: int,
+                 best_bris_speed_fast_track: int, best_bris_speed_turf: int, best_bris_speed_off_track: int,
+                 best_bris_speed_distance: int, auction_price: int, auction_location: str,
                  dirt_pedigree_rating: str, mud_pedigree_rating: str, turf_pedigree_rating: str,
                  distance_pedigree_rating: str, best_bris_speed_life: int, best_bris_speed_most_recent_year: int,
                  best_bris_speed_second_most_recent_year: int, best_bris_speed_todays_track: int,
@@ -430,9 +426,6 @@ class SingleFileHorse(Horse):
         self.breeder: str = breeder
         self.where: str = where
         self.post_position: int = post_position
-        self.trainer: SingleFileTrainer = trainer
-        self.jockey: SingleFileJockey = jockey
-        self.owner: SingleFileOwner = owner
         self.mto_ae_indicator: str = mto_ae_indicator
         self.program_number: str = program_number
         self.morning_line_odds: float = morning_line_odds
@@ -498,9 +491,6 @@ class SingleFileHorse(Horse):
             get_horse_breeder(row),
             get_horse_where(row),
             get_horse_program_post_position(row),
-            SingleFileTrainer.create(row),
-            SingleFileJockey.create(row),
-            SingleFileOwner.create(row),
             get_mto_ae_indicator(row),
             get_program_number(row),
             get_morning_line_odds(row),

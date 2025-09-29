@@ -2,6 +2,9 @@
 
 
 from .horse import SingleFileHorse
+from .jockey import SingleFileJockey
+from .owner import SingleFileOwner
+from .trainer import SingleFileTrainer
 from .utils import get_track, get_date, get_race_number, get_post_position, get_entry, get_distance, \
     get_surface, get_race_type, get_age_sex_restrictions, get_classification, get_purse, get_claiming_price, \
     get_claiming_price_of_horse, get_track_record, get_race_conditions, get_todays_lasix_list, \
@@ -24,6 +27,7 @@ class SingleFileRow:
                  todays_lasix_list: str, todays_bute_list: str, todays_coupled_list: str, todays_mutuel_list: str,
                  simulcast_host_track_code: str, simulcast_host_track_race_number: int, breed_type: str,
                  todays_nasal_strip_change: int, todays_all_weather_surface_flag: str, horse: SingleFileHorse,
+                 trainer: SingleFileTrainer, jockey: SingleFileJockey, owner: SingleFileOwner,
                  bris_pace_par_two_furlongs: int, bris_pace_par_four_furlongs: int, bris_pace_par_six_furlongs: int,
                  bris_speed_par: int, bris_late_pace_par: int, trainer_jockey_combo_starts: int,
                  trainer_jockey_combo_wins: int, trainer_jockey_combo_places: int, trainer_jockey_combo_shows: int,
@@ -57,6 +61,9 @@ class SingleFileRow:
         self.todays_nasal_strip_change: int = todays_nasal_strip_change                 # 1 digit
         self.todays_all_weather_surface_flag: str = todays_all_weather_surface_flag     # 1 character
         self.horse: SingleFileHorse = horse                                             #
+        self.trainer: SingleFileTrainer = trainer                                       #
+        self.jockey: SingleFileJockey = jockey                                          #
+        self.owner: SingleFileOwner = owner                                             #
         self.bris_par_two_furlongs: int = bris_pace_par_two_furlongs                    # 3 digits
         self.bris_par_four_furlongs: int = bris_pace_par_four_furlongs                  # 3 digits
         self.bris_par_six_furlongs: int = bris_pace_par_six_furlongs                    # 3 digits
@@ -119,6 +126,9 @@ class SingleFileRow:
             todays_nasal_strip_change=get_todays_nasal_strip_change(row),
             todays_all_weather_surface_flag=get_todays_all_weather_surface_flag(row),
             horse=SingleFileHorse.create(row),
+            trainer=SingleFileTrainer.create(row),
+            jockey=SingleFileJockey.create(row),
+            owner=SingleFileOwner.create(row),
             bris_pace_par_two_furlongs=get_bris_pace_par_two_furlongs(row),
             bris_pace_par_four_furlongs=get_bris_pace_par_four_furlongs(row),
             bris_pace_par_six_furlongs=get_bris_pace_par_six_furlongs(row),
