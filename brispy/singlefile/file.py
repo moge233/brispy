@@ -11,7 +11,7 @@ from .row import SingleFileRow
 
 @dataclass
 class SingleFile(DataFile):
-    rows: list[SingleFileRow] | None
+    rows: list[SingleFileRow]
 
     @staticmethod
     def create(path: str) -> 'SingleFile':
