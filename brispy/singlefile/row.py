@@ -1,6 +1,8 @@
 #! python3
 
 
+from dataclasses import dataclass
+
 from .horse import SingleFileHorse
 from .jockey import SingleFileJockey
 from .owner import SingleFileOwner
@@ -19,84 +21,57 @@ from .utils import get_track, get_date, get_race_number, get_post_position, get_
     get_post_time_pacific_military, get_todays_equibase_abbreviated_race_conditions
 
 
+@dataclass
 class SingleFileRow:
-
-    def __init__(self, track: str, date: str, race_number: int, post_position: int, entry: str, distance: int,
-                 surface: str, race_type: str, age_sex_restrictions: str, classification: str, purse: int,
-                 claiming_price: int, claiming_price_of_horse: int, track_record: float, race_conditions: str,
-                 todays_lasix_list: str, todays_bute_list: str, todays_coupled_list: str, todays_mutuel_list: str,
-                 simulcast_host_track_code: str, simulcast_host_track_race_number: int, breed_type: str,
-                 todays_nasal_strip_change: int, todays_all_weather_surface_flag: str, horse: SingleFileHorse,
-                 trainer: SingleFileTrainer, jockey: SingleFileJockey, owner: SingleFileOwner,
-                 bris_pace_par_two_furlongs: int, bris_pace_par_four_furlongs: int, bris_pace_par_six_furlongs: int,
-                 bris_speed_par: int, bris_late_pace_par: int, trainer_jockey_combo_starts: int,
-                 trainer_jockey_combo_wins: int, trainer_jockey_combo_places: int, trainer_jockey_combo_shows: int,
-                 trainer_jockey_combo_roi: int, complete_race_conditions: str, low_claiming_price: int,
-                 state_bred_flag: str, wager_types: str, trainer_jockey_combo_meet_starts: int,
-                 trainer_jockey_combo_meet_wins: int, trainer_jockey_combo_meet_places: int,
-                 trainer_jockey_combo_meet_shows: int, trainer_jockey_combo_meet_roi: float,
-                 post_time_pacific_military: str, todays_equibase_abbreviated_race_conditions: str):
-        self.track: str = track                                                         # 3 characters
-        self.date: str = date                                                           # 8 characters
-        self.race_number: int = race_number                                             # 2 digits
-        self.post_position: int = post_position                                         # 2 digits
-        self.entry: str = entry                                                         # 1 character
-        self.distance: int = distance                                                   # 5 digits (in yards)
-        self.surface: str = surface                                                     # 1 character
-        self.race_type: str = race_type                                                 # 2 characters
-        self.age_sex_restrictions: str = age_sex_restrictions                           # 3 characters
-        self.classification: str = classification                                       # 14 characters
-        self.purse: int = purse                                                         # 8 digits
-        self.claiming_price: int = claiming_price                                       # 7 digits
-        self.claiming_price_of_horse: int = claiming_price_of_horse                     # 7 digits
-        self.track_record: float = track_record                                         # 5 digits
-        self.race_conditions: str = race_conditions                                     # 500 characters
-        self.todays_lasix_list: str = todays_lasix_list                                 #
-        self.todays_bute_list: str = todays_bute_list                                   #
-        self.todays_coupled_list: str = todays_coupled_list                             #
-        self.todays_mutuel_list: str = todays_mutuel_list                               #
-        self.simulcast_host_track_code = simulcast_host_track_code                      # 3 characters
-        self.simulcast_host_track_race_number = simulcast_host_track_race_number        # 2 digits
-        self.breed_type: str = breed_type                                               # 2 characters
-        self.todays_nasal_strip_change: int = todays_nasal_strip_change                 # 1 digit
-        self.todays_all_weather_surface_flag: str = todays_all_weather_surface_flag     # 1 character
-        self.horse: SingleFileHorse = horse                                             #
-        self.trainer: SingleFileTrainer = trainer                                       #
-        self.jockey: SingleFileJockey = jockey                                          #
-        self.owner: SingleFileOwner = owner                                             #
-        self.bris_par_two_furlongs: int = bris_pace_par_two_furlongs                    # 3 digits
-        self.bris_par_four_furlongs: int = bris_pace_par_four_furlongs                  # 3 digits
-        self.bris_par_six_furlongs: int = bris_pace_par_six_furlongs                    # 3 digits
-        self.bris_speed_par: int = bris_speed_par                                       # 3 digits
-        self.bris_late_pace_par: int = bris_late_pace_par                               # 3 digits
-        self.trainer_jockey_combo_starts: int = trainer_jockey_combo_starts             # 4 digits
-        self.trainer_jockey_combo_wins: int = trainer_jockey_combo_wins                 # 4 digits
-        self.trainer_jockey_combo_places: int = trainer_jockey_combo_places             # 4 digits
-        self.trainer_jockey_combo_shows: int = trainer_jockey_combo_shows               # 4 digits
-        self.trainer_jockey_combo_roi: int = trainer_jockey_combo_roi                   # 4 digits
-        self.complete_race_conditions: str = complete_race_conditions                   # 254 characters
-        self.low_claiming_price: int = low_claiming_price                               # 7 digits
-        self.state_bred_flag: str = state_bred_flag                                     # 1 character
-        self.wager_types: str = wager_types                                             # 50 characters
-        self.trainer_jockey_combo_meet_starts: int = trainer_jockey_combo_meet_starts   # 4 digits
-        self.trainer_jockey_combo_meet_wins: int = trainer_jockey_combo_meet_wins       # 4 digits
-        self.trainer_jockey_combo_meet_places: int = trainer_jockey_combo_meet_places   # 4 digits
-        self.trainer_jockey_combo_meet_shows: int = trainer_jockey_combo_meet_shows     # 4 digits
-        self.trainer_jockey_combo_meet_roi: float = trainer_jockey_combo_meet_roi       # 6 digits
-        self.post_time_pacific_military: str = post_time_pacific_military               # 4 characters
-        self.todays_equibase_abbreviated_race_conditions: str = todays_equibase_abbreviated_race_conditions
-
-    def __str__(self):
-        ret = ''
-        for k, v in vars(self).items():
-            ret += f'{k}={v}, '
-        return f'SingleFileRow({ret[:-2]})'
-
-    def __repr__(self):
-        ret = ''
-        for k, v in vars(self).items():
-            ret += f'{k}={v}, '
-        return f'SingleFileRow({ret[:-2]})'
+    track: str                                          # 3 characters
+    date: str                                           # 8 characters
+    race_number: int                                    # 2 digits
+    post_position: int                                  # 2 digits
+    entry: str                                          # 1 character
+    distance: int                                       # 5 digits (in yards)
+    surface: str                                        # 1 character
+    race_type: str                                      # 2 characters
+    age_sex_restrictions: str                           # 3 characters
+    classification: str                                 # 14 characters
+    purse: int                                          # 8 digits
+    claiming_price: int                                 # 7 digits
+    claiming_price_of_horse: int                        # 7 digits
+    track_record: float                                 # 5 digits
+    race_conditions: str                                # 500 characters
+    todays_lasix_list: str                              #
+    todays_bute_list: str                               #
+    todays_coupled_list: str                            #
+    todays_mutuel_list: str                             #
+    simulcast_host_track_code: str                      # 3 characters
+    simulcast_host_track_race_number: int               # 2 digits
+    breed_type: str                                     # 2 characters
+    todays_nasal_strip_change: int                      # 1 digit
+    todays_all_weather_surface_flag: str                # 1 character
+    horse: SingleFileHorse                              #
+    trainer: SingleFileTrainer                          #
+    jockey: SingleFileJockey                            #
+    owner: SingleFileOwner                              #
+    bris_par_two_furlongs: int                          # 3 digits
+    bris_par_four_furlongs: int                         # 3 digits
+    bris_par_six_furlongs: int                          # 3 digits
+    bris_speed_par: int                                 # 3 digits
+    bris_late_pace_par: int                             # 3 digits
+    trainer_jockey_combo_starts: int                    # 4 digits
+    trainer_jockey_combo_wins: int                      # 4 digits
+    trainer_jockey_combo_places: int                    # 4 digits
+    trainer_jockey_combo_shows: int                     # 4 digits
+    trainer_jockey_combo_roi: int                       # 4 digits
+    complete_race_conditions: str                       # 254 characters
+    low_claiming_price: int                             # 7 digits
+    state_bred_flag: str                                # 1 character
+    wager_types: str                                    # 50 characters
+    trainer_jockey_combo_meet_starts: int               # 4 digits
+    trainer_jockey_combo_meet_wins: int                 # 4 digits
+    trainer_jockey_combo_meet_places: int               # 4 digits
+    trainer_jockey_combo_meet_shows: int                # 4 digits
+    trainer_jockey_combo_meet_roi: float                # 6 digits
+    post_time_pacific_military: str                     # 4 characters
+    todays_equibase_abbreviated_race_conditions: str    # 17 characters
 
     @staticmethod
     def create(row: list[str]) -> 'SingleFileRow':
@@ -129,9 +104,9 @@ class SingleFileRow:
             trainer=SingleFileTrainer.create(row),
             jockey=SingleFileJockey.create(row),
             owner=SingleFileOwner.create(row),
-            bris_pace_par_two_furlongs=get_bris_pace_par_two_furlongs(row),
-            bris_pace_par_four_furlongs=get_bris_pace_par_four_furlongs(row),
-            bris_pace_par_six_furlongs=get_bris_pace_par_six_furlongs(row),
+            bris_par_two_furlongs=get_bris_pace_par_two_furlongs(row),
+            bris_par_four_furlongs=get_bris_pace_par_four_furlongs(row),
+            bris_par_six_furlongs=get_bris_pace_par_six_furlongs(row),
             bris_speed_par=get_bris_speed_par(row),
             bris_late_pace_par=get_bris_late_pace_par(row),
             trainer_jockey_combo_starts=get_trainer_jockey_combo_starts(row),

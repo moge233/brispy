@@ -1,6 +1,8 @@
 #! python3
 
 
+from dataclasses import dataclass
+
 from brispy.abstract import Horse, PastPerformance
 from .record import SingleFileRecord, SingleFileRecordWithYear
 from .workout import SingleFileWorkout
@@ -76,139 +78,100 @@ from .utils import get_horse_name, get_horse_year_of_birth, get_horse_foaling_mo
     WorkoutNumber, PastPerformanceNumber
 
 
+@dataclass
 class SingleFilePastPerformance(PastPerformance):
-    def __init__(self, date: str, days_since_previous_race: int, track_code: str, bris_track_code: str,
-                 race_number: int, track_condition: str, distance: int, surface: str, special_chute_indicator: str,
-                 number_of_entrants: int, post_position: int, equipment: str, race_name: str, medication: str,
-                 trip_comment: str, winners_name: str, second_place_name: str, third_place_name: str,
-                 winners_weight_carried: int, second_place_weight_carried: int, third_place_weight_carried: int,
-                 winners_margin: float, second_place_margin: float, third_place_margin: float, extra_comment: str,
-                 weight: int, odds: float, entry: str, race_classification: str, horse_claiming_price: int, purse: int,
-                 start_call_position: str, first_call_position: str, second_call_position: str, gate_call_position: str,
-                 stretch_position: str, finish_position: str, start_call_beaten_lengths_leader_margin: float,
-                 start_call_beaten_lengths: float, first_call_beaten_lengths_leader_margin: float,
-                 first_call_beaten_lengths: float, second_call_beaten_lengths_leader_margin: float,
-                 second_call_beaten_lengths: float, first_call_bris_race_shape: int,
-                 stretch_beaten_lengths_leader_margin: float, stretch_beaten_lengths: float,
-                 finish_beaten_lengths_leader_margin: float, finish_beaten_lengths: float,
-                 second_call_bris_race_shape: int, bris_two_furlong_pace_fig: int, bris_four_furlong_pace_fig: int,
-                 bris_six_furlong_pace_fig: int, bris_eight_furlong_pace_fig: int, bris_ten_furlong_pace_fig: int,
-                 bris_late_pace_fig: int, bris_speed_rating: int, speed_rating: int, track_variant: int,
-                 two_furlong_fraction: float, three_furlong_fraction: float, four_furlong_fraction: float,
-                 five_furlong_fraction: float, six_furlong_fraction: float, seven_furlong_fraction: float,
-                 eight_furlong_fraction: float, ten_furlong_fraction: float, twelve_furlong_fraction: float,
-                 fourteen_furlong_fraction: float, sixteen_furlong_fraction: float, fr1: float, fr2: float, fr3: float,
-                 final_time: float, claimed_code: str, trainer: str, jockey: str, apprentice_weight_allowed: int,
-                 race_type: str, age_and_sex_restrictions: str, state_bred_flag: str, restricted_qualifier_flag: str,
-                 favorite_indicator: str, front_bandages_indicator: str, class_speed_par: int, bar_shoe: str,
-                 company_line_codes: str, low_claiming_price_of_race: int, high_claiming_price_of_race: int,
-                 start_code: str, sealed_track_indicator: str, all_weather_surface_flag: str,
-                 equibase_abbreviated_race_conditions: str):
-        super().__init__()
-        self.date: str = date
-        self.days_since_previous_race: int = days_since_previous_race
-        self.track_code: str = track_code
-        self.bris_track_code: str = bris_track_code
-        self.race_number: int = race_number
-        self.track_condition: str = track_condition
-        self.distance: int = distance
-        self.surface: str = surface
-        self.special_chute_indicator: str = special_chute_indicator
-        self.number_of_entrants: int = number_of_entrants
-        self.post_position: int = post_position
-        self.equipment: str = equipment
-        self.race_name: str = race_name
-        self.medication: str = medication
-        self.trip_comment: str = trip_comment
-        self.winners_name: str = winners_name
-        self.second_place_name: str = second_place_name
-        self.third_place_name: str = third_place_name
-        self.winners_weight_carried: int = winners_weight_carried
-        self.second_place_weight_carried: int = second_place_weight_carried
-        self.third_place_weight_carried: int = third_place_weight_carried
-        self.winners_margin: float = winners_margin
-        self.second_place_margin: float = second_place_margin
-        self.third_place_margin: float = third_place_margin
-        self.extra_comment: str = extra_comment
-        self.weight: int = weight
-        self.odds: float = odds
-        self.entry: str = entry
-        self.race_classification: str = race_classification
-        self.horse_claiming_price: int = horse_claiming_price
-        self.purse: int = purse
-        self.start_call_position: str = start_call_position
-        self.first_call_position: str = first_call_position
-        self.second_call_position: str = second_call_position
-        self.gate_call_position: str = gate_call_position
-        self.stretch_position: str = stretch_position
-        self.finish_position: str = finish_position
-        self.start_call_beaten_lengths_leader_margin: float = start_call_beaten_lengths_leader_margin
-        self.start_call_beaten_lengths: float = start_call_beaten_lengths
-        self.first_call_beaten_lengths_leader_margin: float = first_call_beaten_lengths_leader_margin
-        self.first_call_beaten_lengths: float = first_call_beaten_lengths
-        self.second_call_beaten_lengths_leader_margin: float = second_call_beaten_lengths_leader_margin
-        self.second_call_beaten_lengths: float = second_call_beaten_lengths
-        self.first_call_bris_race_shape: int = first_call_bris_race_shape
-        self.stretch_beaten_lengths_leader_margin: float = stretch_beaten_lengths_leader_margin
-        self.stretch_beaten_lengths: float = stretch_beaten_lengths
-        self.finish_beaten_lengths_leader_margin: float = finish_beaten_lengths_leader_margin
-        self.finish_beaten_lengths: float = finish_beaten_lengths
-        self.second_call_bris_race_shape: int = second_call_bris_race_shape
-        self.bris_two_furlong_pace_fig: int = bris_two_furlong_pace_fig
-        self.bris_four_furlong_pace_fig: int = bris_four_furlong_pace_fig
-        self.bris_six_furlong_pace_fig: int = bris_six_furlong_pace_fig
-        self.bris_eight_furlong_pace_fig: int = bris_eight_furlong_pace_fig
-        self.bris_ten_furlong_pace_fig: int = bris_ten_furlong_pace_fig
-        self.bris_late_pace_fig: int = bris_late_pace_fig
-        self.bris_speed_rating: int = bris_speed_rating
-        self.speed_rating: int = speed_rating
-        self.track_variant: int = track_variant
-        self.two_furlong_fraction: float = two_furlong_fraction
-        self.three_furlong_fraction: float = three_furlong_fraction
-        self.four_furlong_fraction: float = four_furlong_fraction
-        self.five_furlong_fraction: float = five_furlong_fraction
-        self.six_furlong_fraction: float = six_furlong_fraction
-        self.seven_furlong_fraction: float = seven_furlong_fraction
-        self.eight_furlong_fraction: float = eight_furlong_fraction
-        self.ten_furlong_fraction: float = ten_furlong_fraction
-        self.twelve_furlong_fraction: float = twelve_furlong_fraction
-        self.fourteen_furlong_fraction: float = fourteen_furlong_fraction
-        self.sixteen_furlong_fraction: float = sixteen_furlong_fraction
-        self.fr1: float = fr1
-        self.fr2: float = fr2
-        self.fr3: float = fr3
-        self.final_time: float = final_time
-        self.claimed_code: str = claimed_code
-        self.trainer: str = trainer
-        self.jockey: str = jockey
-        self.apprentice_weight_allowed: int = apprentice_weight_allowed
-        self.race_type: str = race_type
-        self.age_and_sex_restrictions: str = age_and_sex_restrictions
-        self.state_bred_flag: str = state_bred_flag
-        self.restricted_qualifier_flag: str = restricted_qualifier_flag
-        self.favorite_indicator: str = favorite_indicator
-        self.front_bandages_indicator: str = front_bandages_indicator
-        self.class_speed_par: int = class_speed_par
-        self.bar_shoe: str = bar_shoe
-        self.company_line_codes: str = company_line_codes
-        self.low_claiming_price_of_race: int = low_claiming_price_of_race
-        self.high_claiming_price_of_race: int = high_claiming_price_of_race
-        self.start_code: str = start_code
-        self.sealed_track_indicator: str = sealed_track_indicator
-        self.all_weather_surface_flag: str = all_weather_surface_flag
-        self.equibase_abbreviated_race_conditions: str = equibase_abbreviated_race_conditions
-
-    def __str__(self):
-        ret = ''
-        for k, v in vars(self).items():
-            ret += f'{k}={v}, '
-        return f'SingleFilePastPerformance({ret[:-2]})'
-
-    def __repr__(self):
-        ret = ''
-        for k, v in vars(self).items():
-            ret += f'{k}={v}, '
-        return f'SingleFilePastPerformance({ret[:-2]})'
+    date: str
+    days_since_previous_race: int
+    track_code: str
+    bris_track_code: str
+    race_number: int
+    track_condition: str
+    distance: int
+    surface: str
+    special_chute_indicator: str
+    number_of_entrants: int
+    post_position: int
+    equipment: str
+    race_name: str
+    medication: str
+    trip_comment: str
+    winners_name: str
+    second_place_name: str
+    third_place_name: str
+    winners_weight_carried: int
+    second_place_weight_carried: int
+    third_place_weight_carried: int
+    winners_margin: float
+    second_place_margin: float
+    third_place_margin: float
+    extra_comment: str
+    weight: int
+    odds: float
+    entry: str
+    race_classification: str
+    horse_claiming_price: int
+    purse: int
+    start_call_position: str
+    first_call_position: str
+    second_call_position: str
+    gate_call_position: str
+    stretch_position: str
+    finish_position: str
+    start_call_beaten_lengths_leader_margin: float
+    start_call_beaten_lengths: float
+    first_call_beaten_lengths_leader_margin: float
+    first_call_beaten_lengths: float
+    second_call_beaten_lengths_leader_margin: float
+    second_call_beaten_lengths: float
+    first_call_bris_race_shape: int
+    stretch_beaten_lengths_leader_margin: float
+    stretch_beaten_lengths: float
+    finish_beaten_lengths_leader_margin: float
+    finish_beaten_lengths: float
+    second_call_bris_race_shape: int
+    bris_two_furlong_pace_fig: int
+    bris_four_furlong_pace_fig: int
+    bris_six_furlong_pace_fig: int
+    bris_eight_furlong_pace_fig: int
+    bris_ten_furlong_pace_fig: int
+    bris_late_pace_fig: int
+    bris_speed_rating: int
+    speed_rating: int
+    track_variant: int
+    two_furlong_fraction: float
+    three_furlong_fraction: float
+    four_furlong_fraction: float
+    five_furlong_fraction: float
+    six_furlong_fraction: float
+    seven_furlong_fraction: float
+    eight_furlong_fraction: float
+    ten_furlong_fraction: float
+    twelve_furlong_fraction: float
+    fourteen_furlong_fraction: float
+    sixteen_furlong_fraction: float
+    fr1: float
+    fr2: float
+    fr3: float
+    final_time: float
+    claimed_code: str
+    trainer: str
+    jockey: str
+    apprentice_weight_allowed: int
+    race_type: str
+    age_and_sex_restrictions: str
+    state_bred_flag: str
+    restricted_qualifier_flag: str
+    favorite_indicator: str
+    front_bandages_indicator: str
+    class_speed_par: int
+    bar_shoe: str
+    company_line_codes: str
+    low_claiming_price_of_race: int
+    high_claiming_price_of_race: int
+    start_code: str
+    sealed_track_indicator: str
+    all_weather_surface_flag: str
+    equibase_abbreviated_race_conditions: str
 
     @staticmethod
     def create(row: list[str], number: PastPerformanceNumber) -> 'SingleFilePastPerformance':
@@ -308,35 +271,16 @@ class SingleFilePastPerformance(PastPerformance):
         )
 
 
+@dataclass
 class SingleFileHorseStats:
-    def __init__(self, medication: int,
-                 lifetime_record_todays_distance: SingleFileRecord,
-                 lifetime_record_todays_track: SingleFileRecord,
-                 lifetime_record_turf: SingleFileRecord,
-                 lifetime_wet_record: SingleFileRecord,
-                 current_year_record: SingleFileRecordWithYear,
-                 previous_year_record: SingleFileRecordWithYear,
-                 lifetime_record: SingleFileRecord):
-        self.medication: int = medication
-        self.lifetime_record_todays_distance: SingleFileRecord = lifetime_record_todays_distance
-        self.lifetime_record_todays_track: SingleFileRecord = lifetime_record_todays_track
-        self.lifetime_record_turf: SingleFileRecord = lifetime_record_turf
-        self.lifetime_wet_record: SingleFileRecord = lifetime_wet_record
-        self.current_year_record: SingleFileRecordWithYear = current_year_record
-        self.previous_year_record: SingleFileRecordWithYear = previous_year_record
-        self.lifetime_record: SingleFileRecord = lifetime_record
-
-    def __str__(self):
-        ret = ''
-        for k, v in vars(self).items():
-            ret += f'{k}={v}, '
-        return f'SingleFileHorseStats({ret[:-2]})'
-
-    def __repr__(self):
-        ret = ''
-        for k, v in vars(self).items():
-            ret += f'{k}={v}, '
-        return f'SingleFileHorseStats({ret[:-2]})'
+    medication: int
+    lifetime_record_todays_distance: SingleFileRecord
+    lifetime_record_todays_track: SingleFileRecord
+    lifetime_record_turf: SingleFileRecord
+    lifetime_wet_record: SingleFileRecord
+    current_year_record: SingleFileRecordWithYear
+    previous_year_record: SingleFileRecordWithYear
+    lifetime_record: SingleFileRecord
 
     @staticmethod
     def create(row: list[str]) -> 'SingleFileHorseStats':
@@ -396,84 +340,57 @@ class SingleFileHorseStats:
         )
 
 
+@dataclass
 class SingleFileHorse(Horse):
-    def __init__(self, name: str, year_of_birth: int, foaling_month: int, sex: str, color: str, weight: int,
-                 sire: str, sires_sire: str, dam: str, dams_sire: str, breeder: str, where: str, post_position: int,
-                 mto_ae_indicator: str, program_number: str, morning_line_odds: float, stats: SingleFileHorseStats,
-                 equipment_change: int, workouts: list[SingleFileWorkout], bris_run_style_designation: str,
-                 quirin_speed_points: int, lifetime_starts_all_weather_surface: int,
-                 lifetime_wins_all_weather_surface: int, lifetime_places_all_weather_surface: int,
-                 lifetime_shows_all_weather_surface: int, lifetime_earnings_all_weather_surface: int,
-                 best_bris_speed_all_weather_surface: int, bris_prime_power_rating: float,
-                 past_performances: list[SingleFilePastPerformance], sire_stud_fee: int,
-                 best_bris_speed_fast_track: int, best_bris_speed_turf: int, best_bris_speed_off_track: int,
-                 best_bris_speed_distance: int, auction_price: int, auction_location: str,
-                 dirt_pedigree_rating: str, mud_pedigree_rating: str, turf_pedigree_rating: str,
-                 distance_pedigree_rating: str, best_bris_speed_life: int, best_bris_speed_most_recent_year: int,
-                 best_bris_speed_second_most_recent_year: int, best_bris_speed_todays_track: int,
-                 starts_fast_dirt_track: int, wins_fast_dirt_track: int, places_fast_dirt_track: int,
-                 shows_fast_dirt_track: int, earnings_fast_dirt_track: int):
-        self.name: str = name
-        self.year_of_birth: int = year_of_birth
-        self.foaling_month: int = foaling_month
-        self.sex: str = sex
-        self.color: str = color
-        self.weight: int = weight
-        self.sire: str = sire
-        self.sires_sire: str = sires_sire
-        self.dam: str = dam
-        self.dams_sire: str = dams_sire
-        self.breeder: str = breeder
-        self.where: str = where
-        self.post_position: int = post_position
-        self.mto_ae_indicator: str = mto_ae_indicator
-        self.program_number: str = program_number
-        self.morning_line_odds: float = morning_line_odds
-        self.stats: SingleFileHorseStats = stats
-        self.equipment_change: int = equipment_change
-        self.workouts: list[SingleFileWorkout] = workouts
-        self.bris_run_style_designation: str = bris_run_style_designation
-        self.quirin_speed_points: int = quirin_speed_points
-        self.lifetime_starts_all_weather_surface: int = lifetime_starts_all_weather_surface
-        self.lifetime_wins_all_weather_surface: int = lifetime_wins_all_weather_surface
-        self.lifetime_places_all_weather_surface: int = lifetime_places_all_weather_surface
-        self.lifetime_shows_all_weather_surface: int = lifetime_shows_all_weather_surface
-        self.lifetime_earnings_all_weather_surface: int = lifetime_earnings_all_weather_surface
-        self.best_bris_speed_all_weather_surface: int = best_bris_speed_all_weather_surface
-        self.bris_prime_power_rating: float = bris_prime_power_rating
-        self.past_performances: list[SingleFilePastPerformance] = past_performances
-        self.sire_stud_fee: int = sire_stud_fee
-        self.best_bris_speed_fast_track: int = best_bris_speed_fast_track
-        self.best_bris_speed_turf: int = best_bris_speed_turf
-        self.best_bris_speed_off_track: int = best_bris_speed_off_track
-        self.best_bris_speed_distance: int = best_bris_speed_distance
-        self.auction_price: int = auction_price
-        self.auction_location: str = auction_location
-        self.dirt_pedigree_rating: str = dirt_pedigree_rating
-        self.mud_pedigree_rating: str = mud_pedigree_rating
-        self.turf_pedigree_rating: str = turf_pedigree_rating
-        self.distance_pedigree_rating: str = distance_pedigree_rating
-        self.best_bris_speed_life: int = best_bris_speed_life
-        self.best_bris_speed_most_recent_year: int = best_bris_speed_most_recent_year
-        self.best_bris_speed_second_most_recent_year: int = best_bris_speed_second_most_recent_year
-        self.best_bris_speed_todays_track: int = best_bris_speed_todays_track
-        self.starts_fast_dirt_track: int = starts_fast_dirt_track
-        self.wins_fast_dirt_track: int = wins_fast_dirt_track
-        self.places_fast_dirt_track: int = places_fast_dirt_track
-        self.shows_fast_dirt_track: int = shows_fast_dirt_track
-        self.earnings_fast_dirt_track: int = earnings_fast_dirt_track
-
-    def __str__(self):
-        ret = ''
-        for k, v in vars(self).items():
-            ret += f'{k}={v}, '
-        return f'SingleFileHorse({ret[:-2]})'
-
-    def __repr__(self):
-        ret = ''
-        for k, v in vars(self).items():
-            ret += f'{k}={v}, '
-        return f'SingleFileHorse({ret[:-2]})'
+    name: str
+    year_of_birth: int
+    foaling_month: int
+    sex: str
+    color: str
+    weight: int
+    sire: str
+    sires_sire: str
+    dam: str
+    dams_sire: str
+    breeder: str
+    where: str
+    post_position: int
+    mto_ae_indicator: str
+    program_number: str
+    morning_line_odds: float
+    stats: SingleFileHorseStats
+    equipment_change: int
+    workouts: list[SingleFileWorkout]
+    bris_run_style_designation: str
+    quirin_speed_points: int
+    lifetime_starts_all_weather_surface: int
+    lifetime_wins_all_weather_surface: int
+    lifetime_places_all_weather_surface: int
+    lifetime_shows_all_weather_surface: int
+    lifetime_earnings_all_weather_surface: int
+    best_bris_speed_all_weather_surface: int
+    bris_prime_power_rating: float
+    past_performances: list[SingleFilePastPerformance]
+    sire_stud_fee: int
+    best_bris_speed_fast_track: int
+    best_bris_speed_turf: int
+    best_bris_speed_off_track: int
+    best_bris_speed_distance: int
+    auction_price: int
+    auction_location: str
+    dirt_pedigree_rating: str
+    mud_pedigree_rating: str
+    turf_pedigree_rating: str
+    distance_pedigree_rating: str
+    best_bris_speed_life: int
+    best_bris_speed_most_recent_year: int
+    best_bris_speed_second_most_recent_year: int
+    best_bris_speed_todays_track: int
+    starts_fast_dirt_track: int
+    wins_fast_dirt_track: int
+    places_fast_dirt_track: int
+    shows_fast_dirt_track: int
+    earnings_fast_dirt_track: int
 
     @staticmethod
     def create(row: list[str]) -> 'SingleFileHorse':

@@ -2,28 +2,16 @@
 
 
 import csv
+from dataclasses import dataclass
 import os
 
 from brispy.abstract import DataFile
 from .row import SingleFileRow
 
 
+@dataclass
 class SingleFile(DataFile):
-    def __init__(self, rows=None):
-        super().__init__()
-        self.rows: list[SingleFileRow] | None = rows
-
-    def __str__(self):
-        ret = ''
-        for k, v in vars(self).items():
-            ret += f'{k}={v}, '
-        return f'SingleFile({ret[:-2]})'
-
-    def __repr__(self):
-        ret = ''
-        for k, v in vars(self).items():
-            ret += f'{k}={v}, '
-        return f'SingleFile({ret[:-2]})'
+    rows: list[SingleFileRow] | None
 
     @staticmethod
     def create(path: str) -> 'SingleFile':
@@ -34,4 +22,4 @@ class SingleFile(DataFile):
             rows: list[SingleFileRow] = []
             for row in reader:
                 rows.append(SingleFileRow.create(row))
-            return SingleFile(rows)
+            return SingleFile(rows=rows)
