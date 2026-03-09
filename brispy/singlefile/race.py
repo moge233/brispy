@@ -30,10 +30,10 @@ class SingleFileRace:
     claiming_price_of_horse: int                        # 7 digits
     track_record: float                                 # 5 digits
     conditions: str                                     # 500 characters
-    lasix_list: str                              #
-    bute_list: str                               #
-    coupled_list: str                            #
-    mutuel_list: str                             #
+    lasix_list: str                                     #
+    bute_list: str                                      #
+    coupled_list: str                                   #
+    mutuel_list: str                                    #
     simulcast_host_track_code: str                      # 3 characters
     simulcast_host_track_race_number: int               # 2 digits
     breed_type: str                                     # 2 characters
