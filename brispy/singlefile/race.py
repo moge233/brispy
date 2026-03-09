@@ -3,9 +3,9 @@
 
 from dataclasses import dataclass
 
-from .utils import get_track, get_date, get_race_number, get_entry, get_distance, \
+from .utils import get_track, get_date, get_race_number, get_distance, \
     get_surface, get_race_type, get_age_sex_restrictions, get_classification, get_purse, get_claiming_price, \
-    get_claiming_price_of_horse, get_track_record, get_race_conditions, get_todays_lasix_list, \
+    get_track_record, get_race_conditions, get_todays_lasix_list, \
     get_todays_bute_list, get_todays_coupled_list, get_todays_mutuel_list, get_simulcast_host_track_code, \
     get_simulcast_host_track_race_number, get_breed_type, get_todays_nasal_strip_change, \
     get_todays_all_weather_surface_flag, get_complete_race_conditions, get_low_claiming_price, \
@@ -18,7 +18,6 @@ class SingleFileRace:
     track: str                                          # 3 characters
     date: str                                           # 8 characters
     number: int                                         # 2 digits
-    entry: str                                          # 1 character
     distance: int                                       # 5 digits (in yards)
     surface: str                                        # 1 character
     race_type: str                                      # 2 characters
@@ -26,7 +25,6 @@ class SingleFileRace:
     classification: str                                 # 14 characters
     purse: int                                          # 8 digits
     claiming_price: int                                 # 7 digits
-    claiming_price_of_horse: int                        # 7 digits
     track_record: float                                 # 5 digits
     conditions: str                                     # 500 characters
     lasix_list: str                                     #
@@ -51,7 +49,6 @@ class SingleFileRace:
             track=get_track(row),
             date=get_date(row),
             number=get_race_number(row),
-            entry=get_entry(row),
             distance=get_distance(row),
             surface=get_surface(row),
             race_type=get_race_type(row),
@@ -59,7 +56,6 @@ class SingleFileRace:
             classification=get_classification(row),
             purse=get_purse(row),
             claiming_price=get_claiming_price(row),
-            claiming_price_of_horse=get_claiming_price_of_horse(row),
             track_record=get_track_record(row),
             conditions=get_race_conditions(row),
             lasix_list=get_todays_lasix_list(row),
