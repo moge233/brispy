@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from brispy.abstract import Horse, PastPerformance
 from .record import SingleFileRecord, SingleFileRecordWithYear
 from .workout import SingleFileWorkout
-from .utils import get_horse_name, get_horse_year_of_birth, get_horse_foaling_month, get_horse_sex, \
+from .utils import get_horse_name, get_post_position, get_horse_year_of_birth, get_horse_foaling_month, get_horse_sex, \
     get_horse_color, get_horse_weight, get_horse_sire, get_horse_sires_sire, get_horse_dam, get_horse_dams_sire, \
     get_horse_breeder, get_horse_where, get_horse_program_post_position, get_todays_medication1, get_mto_ae_indicator, \
     get_program_number, get_morning_line_odds, get_lifetime_starts_todays_distance, get_lifetime_wins_todays_distance, \
@@ -343,6 +343,7 @@ class SingleFileHorseStats:
 @dataclass
 class SingleFileHorse(Horse):
     name: str
+    post_position: int
     year_of_birth: int
     foaling_month: int
     sex: str
@@ -354,7 +355,7 @@ class SingleFileHorse(Horse):
     dams_sire: str
     breeder: str
     where: str
-    post_position: int
+    program_post_position: int
     mto_ae_indicator: str
     program_number: str
     morning_line_odds: float
@@ -396,6 +397,7 @@ class SingleFileHorse(Horse):
     def create(row: list[str]) -> 'SingleFileHorse':
         return SingleFileHorse(
             get_horse_name(row),
+            get_post_position(row),
             get_horse_year_of_birth(row),
             get_horse_foaling_month(row),
             get_horse_sex(row),

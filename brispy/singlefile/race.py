@@ -3,7 +3,7 @@
 
 from dataclasses import dataclass
 
-from .utils import get_track, get_date, get_race_number, get_post_position, get_entry, get_distance, \
+from .utils import get_track, get_date, get_race_number, get_entry, get_distance, \
     get_surface, get_race_type, get_age_sex_restrictions, get_classification, get_purse, get_claiming_price, \
     get_claiming_price_of_horse, get_track_record, get_race_conditions, get_todays_lasix_list, \
     get_todays_bute_list, get_todays_coupled_list, get_todays_mutuel_list, get_simulcast_host_track_code, \
@@ -18,7 +18,6 @@ class SingleFileRace:
     track: str                                          # 3 characters
     date: str                                           # 8 characters
     number: int                                         # 2 digits
-    post_position: int                                  # 2 digits
     entry: str                                          # 1 character
     distance: int                                       # 5 digits (in yards)
     surface: str                                        # 1 character
@@ -52,7 +51,6 @@ class SingleFileRace:
             track=get_track(row),
             date=get_date(row),
             number=get_race_number(row),
-            post_position=get_post_position(row),
             entry=get_entry(row),
             distance=get_distance(row),
             surface=get_surface(row),
