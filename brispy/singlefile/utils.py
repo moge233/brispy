@@ -120,6 +120,22 @@ def _get_float(row: list[str], index: SingleFileIndex) -> float | None:
         raise FieldError(index, text, 'number') from None
 
 
+def _continued(row: list[str], indexes: list[SingleFileIndex]) -> str | None:
+    """One text split across several fields at a fixed width.
+
+    The split can fall right after a space or in the middle of a word, so the
+    parts are joined untouched and only the end of the whole text is trimmed.
+    """
+    parts = []
+    for index in indexes:
+        try:
+            parts.append(row[index.value])
+        except IndexError:
+            raise FieldError(index, None, 'text') from None
+    text = ''.join(parts).rstrip()
+    return text or None
+
+
 def _join(parts: list[str | None]) -> str | None:
     """Concatenate the non-blank parts of a multi-field value, or ``None`` if all are blank."""
     text = ''.join(part for part in parts if part is not None)
@@ -665,8 +681,8 @@ def get_complete_race_conditions6(row: list[str]) -> str | None:
 
 
 def get_complete_race_conditions(row: list[str]) -> str | None:
-    return _join([_get_str(row, getattr(SingleFileIndex, f'COMPLETE_RACE_CONDITIONS{i}_INDEX'))
-                  for i in range(1, 7)])
+    return _continued(row, [getattr(SingleFileIndex, f'COMPLETE_RACE_CONDITIONS{i}_INDEX')
+                            for i in range(1, 7)])
 
 
 def get_lifetime_starts_all_weather_surface(row: list[str]) -> int | None:

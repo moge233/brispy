@@ -3,7 +3,7 @@
 
 from unittest import TestCase
 
-from brispy.singlefile import FieldError, SingleFileRow
+from brispy.singlefile import FieldError, SingleFileRow, utils
 from brispy.singlefile.index import SingleFileIndex
 from .rowbuilder import FIELD_COUNT, build_row
 
@@ -104,3 +104,28 @@ class TestStandaloneReaders(TestCase):
             reader = getattr(utils, f'get_complete_race_conditions{number}')
             with self.subTest(number=number):
                 self.assertEqual(reader(row), '7')
+
+
+class TestCompleteRaceConditions(TestCase):
+    """Fields 225-230 hold one text split at a fixed width, often mid-word."""
+
+    def test_space_at_a_boundary_is_kept(self):
+        row = build_row(
+            '',
+            COMPLETE_RACE_CONDITIONS1='WINNERS OR CLAIMING ',
+            COMPLETE_RACE_CONDITIONS2='PRICE $20;000. ',
+        )
+        conditions = SingleFileRow.create(row).race.complete_race_conditions
+        self.assertEqual(conditions, 'WINNERS OR CLAIMING PRICE $20;000.')
+
+    def test_split_mid_word(self):
+        row = build_row('', COMPLETE_RACE_CONDITIONS1='Claiming Pric', COMPLETE_RACE_CONDITIONS2='e $30;000. ')
+        self.assertEqual(SingleFileRow.create(row).race.complete_race_conditions, 'Claiming Price $30;000.')
+
+    def test_all_blank_is_none(self):
+        self.assertIsNone(SingleFileRow.create(build_row('')).race.complete_race_conditions)
+
+    def test_short_row_raises(self):
+        row = build_row('')[: SingleFileIndex.COMPLETE_RACE_CONDITIONS3_INDEX.value]
+        with self.assertRaises(FieldError):
+            utils.get_complete_race_conditions(row)
