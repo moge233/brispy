@@ -3,7 +3,7 @@
 
 from unittest import TestCase
 
-from brispy.singlefile import SingleFileRow
+from brispy.singlefile import FieldError, SingleFileRow
 from brispy.singlefile.index import SingleFileIndex
 from .rowbuilder import FIELD_COUNT, build_row
 
@@ -23,18 +23,42 @@ class TestEveryReader(TestCase):
         self.assertEqual(len(row.horse.workouts), 12)
         self.assertEqual(row.horse.past_performances[9].final_time, 7.0)
 
-    def test_short_row_falls_back(self):
-        # Current behaviour: a field that is missing or unparseable reads as
-        # '' / 0 / 0.0. A later change makes this strict.
-        row = SingleFileRow.create([])
-        self.assertEqual(row.race.track, '')
-        self.assertEqual(row.race.number, 0)
-        self.assertEqual(row.horse.morning_line_odds, 0.0)
+    def test_blank_fields_read_as_none(self):
+        row = SingleFileRow.create(build_row(''))
+        self.assertIsNone(row.race.track)
+        self.assertIsNone(row.race.number)
+        self.assertIsNone(row.horse.morning_line_odds)
+        self.assertIsNone(row.race.complete_race_conditions)
+        self.assertIsNone(row.race.wager_types)
 
-    def test_unparseable_numbers_fall_back(self):
-        row = SingleFileRow.create(build_row('x'))
-        self.assertEqual(row.race.number, 0)
-        self.assertEqual(row.horse.morning_line_odds, 0.0)
+    def test_whitespace_only_is_blank(self):
+        row = SingleFileRow.create(build_row('   '))
+        self.assertIsNone(row.race.number)
+
+    def test_joined_fields_skip_blank_parts(self):
+        row = build_row('', COMPLETE_RACE_CONDITIONS1='FOR THREE YEAR', COMPLETE_RACE_CONDITIONS3=' OLDS AND UP')
+        self.assertEqual(SingleFileRow.create(row).race.complete_race_conditions, 'FOR THREE YEAR OLDS AND UP')
+
+    def test_negative_distance_keeps_its_sign(self):
+        row = SingleFileRow.create(build_row('7', DISTANCE='-1540'))
+        self.assertEqual(row.race.distance, -1540)
+
+    def test_malformed_integer_raises(self):
+        with self.assertRaises(FieldError) as raised:
+            SingleFileRow.create(build_row('7', DISTANCE='abc'))
+        self.assertEqual(raised.exception.index, SingleFileIndex.DISTANCE_INDEX)
+        self.assertIn("field 6 (DISTANCE): 'abc' is not a valid integer", str(raised.exception))
+
+    def test_malformed_number_raises(self):
+        with self.assertRaises(FieldError) as raised:
+            SingleFileRow.create(build_row('7', MORNING_LINE_ODDS='5-2'))
+        self.assertIn("field 44 (MORNING_LINE_ODDS): '5-2' is not a valid number", str(raised.exception))
+
+    def test_short_row_raises(self):
+        with self.assertRaises(FieldError) as raised:
+            SingleFileRow.create(['CD'])
+        self.assertIn('field 2 (DATE): missing (the row is too short)', str(raised.exception))
+        self.assertIsNone(raised.exception.value)
 
 
 class TestIndexMatchesBrisnetSpec(TestCase):

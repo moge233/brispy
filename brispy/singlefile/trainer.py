@@ -16,11 +16,11 @@ from .utils import get_todays_trainer, get_todays_trainer_starts, get_todays_tra
 
 @dataclass
 class SingleFileTrainerKeyStat:
-    category: str               # 16 characters
-    number_of_starts: int       # 4 digits
-    win_percentage: float       # 5 digits
-    itm_percentage: float       # 5 digits
-    roi: float                  # 5 digits
+    category: str | None               # 16 characters
+    number_of_starts: int | None       # 4 digits
+    win_percentage: float | None       # 5 digits
+    itm_percentage: float | None       # 5 digits
+    roi: float | None                  # 5 digits
 
     @staticmethod
     def create(row: list[str], number: TrainerKeyStatNumber) -> 'SingleFileTrainerKeyStat':
@@ -35,21 +35,21 @@ class SingleFileTrainerKeyStat:
 
 @dataclass
 class SingleFileTrainer(Trainer):
-    name: str                                   # 30 characters
-    starts: int                                 # 4 digits
-    wins: int                                   # 3 digits
-    places: int                                 # 3 digits
-    shows: int                                  # 3 digits
-    current_year_starts: int                    # 4 digits
-    current_year_wins: int                      # 4 digits
-    current_year_places: int                    # 4 digits
-    current_year_shows: int                     # 4 digits
-    current_year_roi: float                     # 6 digits
-    prevous_year_starts: int                    # 4 digits
-    prevous_year_wins: int                      # 4 digits
-    prevous_year_places: int                    # 4 digits
-    prevous_year_shows: int                     # 4 digits
-    prevous_year_roi: float                     # 6 digits
+    name: str | None                                   # 30 characters
+    starts: int | None                                 # 4 digits
+    wins: int | None                                   # 3 digits
+    places: int | None                                 # 3 digits
+    shows: int | None                                  # 3 digits
+    current_year_starts: int | None                    # 4 digits
+    current_year_wins: int | None                      # 4 digits
+    current_year_places: int | None                    # 4 digits
+    current_year_shows: int | None                     # 4 digits
+    current_year_roi: float | None                     # 6 digits
+    prevous_year_starts: int | None                    # 4 digits
+    prevous_year_wins: int | None                      # 4 digits
+    prevous_year_places: int | None                    # 4 digits
+    prevous_year_shows: int | None                     # 4 digits
+    prevous_year_roi: float | None                     # 6 digits
     key_stats: list[SingleFileTrainerKeyStat]   # 6 key stats
 
     @staticmethod

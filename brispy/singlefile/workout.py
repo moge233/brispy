@@ -11,15 +11,15 @@ from .utils import get_workout_date, get_workout_time, get_workout_track, get_wo
 
 @dataclass
 class SingleFileWorkout(Workout):
-    date: str
-    time: str
-    track: str
-    distance: int
-    track_condition: str
-    description: str
-    main_inner_track_indicator: str
-    number_of_works: int
-    rank: str
+    date: str | None
+    time: str | None
+    track: str | None
+    distance: int | None
+    track_condition: str | None
+    description: str | None
+    main_inner_track_indicator: str | None
+    number_of_works: int | None
+    rank: str | None
 
     @staticmethod
     def create(row: list[str], number: WorkoutNumber) -> 'SingleFileWorkout':

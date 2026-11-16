@@ -9,6 +9,11 @@ for row in card.rows:
     print(row.race.number, row.horse.program_number, row.horse.name)
 ```
 
+Fields are read strictly. A blank field is `None`. A field that can't be read
+as its type, or a row too short to hold it, raises `brispy.singlefile.FieldError`.
+The error names the field (with its 1-based Brisnet field number), the value,
+and, from `SingleFile.create`, the file and row.
+
 ## Development
 
 ```shell

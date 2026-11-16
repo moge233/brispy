@@ -15,29 +15,29 @@ from .utils import get_apprentice_weight_allowed, get_todays_jockey, get_todays_
 
 @dataclass
 class SingleFileJockey(Jockey):
-    name: str
-    apprentice_weight_allowed: int
-    starts: int
-    wins: int
-    place: int
-    shows: int
-    current_year_starts: int
-    current_year_wins: int
-    current_year_places: int
-    current_year_shows: int
-    current_year_roi: float
-    preivous_year_starts: int
-    previous_year_wins: int
-    previous_year_places: int
-    previous_year_shows: int
-    previous_year_roi: float
-    at_distance_on_turf_label: str
-    at_distance_on_turf_starts: int
-    at_distance_on_turf_wins: int
-    at_distance_on_turf_places: int
-    at_distance_on_turf_shows: int
-    at_distance_on_turf_roi: float
-    at_distance_on_turf_earnings: int
+    name: str | None
+    apprentice_weight_allowed: int | None
+    starts: int | None
+    wins: int | None
+    place: int | None
+    shows: int | None
+    current_year_starts: int | None
+    current_year_wins: int | None
+    current_year_places: int | None
+    current_year_shows: int | None
+    current_year_roi: float | None
+    preivous_year_starts: int | None
+    previous_year_wins: int | None
+    previous_year_places: int | None
+    previous_year_shows: int | None
+    previous_year_roi: float | None
+    at_distance_on_turf_label: str | None
+    at_distance_on_turf_starts: int | None
+    at_distance_on_turf_wins: int | None
+    at_distance_on_turf_places: int | None
+    at_distance_on_turf_shows: int | None
+    at_distance_on_turf_roi: float | None
+    at_distance_on_turf_earnings: int | None
 
     @staticmethod
     def create(row: list[str]) -> 'SingleFileJockey':
