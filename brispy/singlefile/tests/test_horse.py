@@ -9,7 +9,7 @@ from brispy.singlefile.file import SingleFile
 
 class TestSingleFileHorse(TestCase):
 
-    TEST_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'TESTDRF.drf')
+    TEST_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'TESTDRF.DRF')
 
     @classmethod
     def setUpClass(cls):
