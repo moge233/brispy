@@ -11,10 +11,12 @@ from .race import SingleFileRace
 from .record import SingleFileRecord, SingleFileRecordWithYear
 from .row import SingleFileRow
 from .trainer import SingleFileTrainer
+from .utils import FieldError
 from .workout import SingleFileWorkout
 
 
 __all__ = [
+    "FieldError",
     "SingleFileBrisPars",
     "SingleFileTrainerJockeyCombo",
     "SingleFile",

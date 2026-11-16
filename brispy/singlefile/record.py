@@ -6,13 +6,13 @@ from dataclasses import dataclass
 
 @dataclass
 class SingleFileRecord:
-    starts: int
-    wins: int
-    places: int
-    shows: int
-    earnings: int
+    starts: int | None
+    wins: int | None
+    places: int | None
+    shows: int | None
+    earnings: int | None
 
 
 @dataclass
 class SingleFileRecordWithYear(SingleFileRecord):
-    year: int
+    year: int | None

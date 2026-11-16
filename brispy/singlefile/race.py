@@ -15,33 +15,33 @@ from .utils import get_track, get_date, get_race_number, get_distance, \
 
 @dataclass
 class SingleFileRace:
-    track: str                                          # 3 characters
-    date: str                                           # 8 characters
-    number: int                                         # 2 digits
-    distance: int                                       # 5 digits (in yards)
-    surface: str                                        # 1 character
-    race_type: str                                      # 2 characters
-    age_sex_restrictions: str                           # 3 characters
-    classification: str                                 # 14 characters
-    purse: int                                          # 8 digits
-    claiming_price: int                                 # 7 digits
-    track_record: float                                 # 5 digits
-    conditions: str                                     # 500 characters
-    lasix_list: str                                     #
-    bute_list: str                                      #
-    coupled_list: str                                   #
-    mutuel_list: str                                    #
-    simulcast_host_track_code: str                      # 3 characters
-    simulcast_host_track_race_number: int               # 2 digits
-    breed_type: str                                     # 2 characters
-    todays_nasal_strip_change: int                      # 1 digit
-    todays_all_weather_surface_flag: str                # 1 character
-    complete_race_conditions: str                       # 254 characters
-    low_claiming_price: int                             # 7 digits
-    state_bred_flag: str                                # 1 character
-    wager_types: str                                    # 50 characters
-    post_time: str                                      # 4 characters (Pacific military)
-    equibase_abbreviated_race_conditions: str           # 17 characters
+    track: str | None                                          # 3 characters
+    date: str | None                                           # 8 characters
+    number: int | None                                         # 2 digits
+    distance: int | None                                       # 5 digits (in yards)
+    surface: str | None                                        # 1 character
+    race_type: str | None                                      # 2 characters
+    age_sex_restrictions: str | None                           # 3 characters
+    classification: str | None                                 # 14 characters
+    purse: int | None                                          # 8 digits
+    claiming_price: int | None                                 # 7 digits
+    track_record: float | None                                 # 5 digits
+    conditions: str | None                                     # 500 characters
+    lasix_list: str | None                                     #
+    bute_list: str | None                                      #
+    coupled_list: str | None                                   #
+    mutuel_list: str | None                                    #
+    simulcast_host_track_code: str | None                      # 3 characters
+    simulcast_host_track_race_number: int | None               # 2 digits
+    breed_type: str | None                                     # 2 characters
+    todays_nasal_strip_change: int | None                      # 1 digit
+    todays_all_weather_surface_flag: str | None                # 1 character
+    complete_race_conditions: str | None                       # 254 characters
+    low_claiming_price: int | None                             # 7 digits
+    state_bred_flag: str | None                                # 1 character
+    wager_types: str | None                                    # 50 characters
+    post_time: str | None                                      # 4 characters (Pacific military)
+    equibase_abbreviated_race_conditions: str | None           # 17 characters
 
     @staticmethod
     def create(row: list[str]) -> 'SingleFileRace':

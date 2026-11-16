@@ -11,16 +11,16 @@ from .utils import get_trainer_jockey_combo_starts, \
 
 @dataclass
 class SingleFileTrainerJockeyCombo:
-    lifetime_starts: int                    # 4 digits
-    lifetime_wins: int                      # 4 digits
-    lifetime_places: int                    # 4 digits
-    lifetime_shows: int                     # 4 digits
-    lifetime_roi: float                     # e.g. -0.60
-    meet_starts: int                        # 4 digits
-    meet_wins: int                          # 4 digits
-    meet_places: int                        # 4 digits
-    meet_shows: int                         # 4 digits
-    meet_roi: float                         # 6 digits
+    lifetime_starts: int | None                    # 4 digits
+    lifetime_wins: int | None                      # 4 digits
+    lifetime_places: int | None                    # 4 digits
+    lifetime_shows: int | None                     # 4 digits
+    lifetime_roi: float | None                     # e.g. -0.60
+    meet_starts: int | None                        # 4 digits
+    meet_wins: int | None                          # 4 digits
+    meet_places: int | None                        # 4 digits
+    meet_shows: int | None                         # 4 digits
+    meet_roi: float | None                         # 6 digits
 
     @staticmethod
     def create(row: list[str]) -> 'SingleFileTrainerJockeyCombo':

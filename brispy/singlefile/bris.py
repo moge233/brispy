@@ -9,11 +9,11 @@ from .utils import get_bris_pace_par_two_furlongs, get_bris_pace_par_four_furlon
 
 @dataclass
 class SingleFileBrisPars:
-    two_furlongs: int                          # 3 digits
-    four_furlongs: int                         # 3 digits
-    six_furlongs: int                          # 3 digits
-    speed_par: int                             # 3 digits
-    late_pace: int                             # 3 digits
+    two_furlongs: int | None                          # 3 digits
+    four_furlongs: int | None                         # 3 digits
+    six_furlongs: int | None                          # 3 digits
+    speed_par: int | None                             # 3 digits
+    late_pace: int | None                             # 3 digits
 
     @staticmethod
     def create(row: list[str]) -> 'SingleFileBrisPars':

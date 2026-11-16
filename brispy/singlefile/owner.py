@@ -9,8 +9,8 @@ from .utils import get_todays_owner, get_owners_silks
 
 @dataclass
 class SingleFileOwner(Owner):
-    name: str
-    silks: str
+    name: str | None
+    silks: str | None
 
     @staticmethod
     def create(row: list[str]) -> 'SingleFileOwner':

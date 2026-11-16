@@ -81,98 +81,98 @@ from .utils import get_horse_name, get_post_position, get_entry, get_horse_year_
 
 @dataclass
 class SingleFilePastPerformance(PastPerformance):
-    date: str
-    days_since_previous_race: int
-    track_code: str
-    bris_track_code: str
-    race_number: int
-    track_condition: str
-    distance: int
-    surface: str
-    special_chute_indicator: str
-    number_of_entrants: int
-    post_position: int
-    equipment: str
-    race_name: str
-    medication: str
-    trip_comment: str
-    winners_name: str
-    second_place_name: str
-    third_place_name: str
-    winners_weight_carried: int
-    second_place_weight_carried: int
-    third_place_weight_carried: int
-    winners_margin: float
-    second_place_margin: float
-    third_place_margin: float
-    extra_comment: str
-    weight: int
-    odds: float
-    entry: str
-    race_classification: str
-    horse_claiming_price: int
-    purse: int
-    start_call_position: str
-    first_call_position: str
-    second_call_position: str
-    gate_call_position: str
-    stretch_position: str
-    finish_position: str
-    start_call_beaten_lengths_leader_margin: float
-    start_call_beaten_lengths: float
-    first_call_beaten_lengths_leader_margin: float
-    first_call_beaten_lengths: float
-    second_call_beaten_lengths_leader_margin: float
-    second_call_beaten_lengths: float
-    first_call_bris_race_shape: int
-    stretch_beaten_lengths_leader_margin: float
-    stretch_beaten_lengths: float
-    finish_beaten_lengths_leader_margin: float
-    finish_beaten_lengths: float
-    second_call_bris_race_shape: int
-    bris_two_furlong_pace_fig: int
-    bris_four_furlong_pace_fig: int
-    bris_six_furlong_pace_fig: int
-    bris_eight_furlong_pace_fig: int
-    bris_ten_furlong_pace_fig: int
-    bris_late_pace_fig: int
-    bris_speed_rating: int
-    speed_rating: int
-    track_variant: int
-    two_furlong_fraction: float
-    three_furlong_fraction: float
-    four_furlong_fraction: float
-    five_furlong_fraction: float
-    six_furlong_fraction: float
-    seven_furlong_fraction: float
-    eight_furlong_fraction: float
-    ten_furlong_fraction: float
-    twelve_furlong_fraction: float
-    fourteen_furlong_fraction: float
-    sixteen_furlong_fraction: float
-    fr1: float
-    fr2: float
-    fr3: float
-    final_time: float
-    claimed_code: str
-    trainer: str
-    jockey: str
-    apprentice_weight_allowed: int
-    race_type: str
-    age_and_sex_restrictions: str
-    state_bred_flag: str
-    restricted_qualifier_flag: str
-    favorite_indicator: str
-    front_bandages_indicator: str
-    class_speed_par: int
-    bar_shoe: str
-    company_line_codes: str
-    low_claiming_price_of_race: int
-    high_claiming_price_of_race: int
-    start_code: str
-    sealed_track_indicator: str
-    all_weather_surface_flag: str
-    equibase_abbreviated_race_conditions: str
+    date: str | None
+    days_since_previous_race: int | None
+    track_code: str | None
+    bris_track_code: str | None
+    race_number: int | None
+    track_condition: str | None
+    distance: int | None
+    surface: str | None
+    special_chute_indicator: str | None
+    number_of_entrants: int | None
+    post_position: int | None
+    equipment: str | None
+    race_name: str | None
+    medication: str | None
+    trip_comment: str | None
+    winners_name: str | None
+    second_place_name: str | None
+    third_place_name: str | None
+    winners_weight_carried: int | None
+    second_place_weight_carried: int | None
+    third_place_weight_carried: int | None
+    winners_margin: float | None
+    second_place_margin: float | None
+    third_place_margin: float | None
+    extra_comment: str | None
+    weight: int | None
+    odds: float | None
+    entry: str | None
+    race_classification: str | None
+    horse_claiming_price: int | None
+    purse: int | None
+    start_call_position: str | None
+    first_call_position: str | None
+    second_call_position: str | None
+    gate_call_position: str | None
+    stretch_position: str | None
+    finish_position: str | None
+    start_call_beaten_lengths_leader_margin: float | None
+    start_call_beaten_lengths: float | None
+    first_call_beaten_lengths_leader_margin: float | None
+    first_call_beaten_lengths: float | None
+    second_call_beaten_lengths_leader_margin: float | None
+    second_call_beaten_lengths: float | None
+    first_call_bris_race_shape: int | None
+    stretch_beaten_lengths_leader_margin: float | None
+    stretch_beaten_lengths: float | None
+    finish_beaten_lengths_leader_margin: float | None
+    finish_beaten_lengths: float | None
+    second_call_bris_race_shape: int | None
+    bris_two_furlong_pace_fig: int | None
+    bris_four_furlong_pace_fig: int | None
+    bris_six_furlong_pace_fig: int | None
+    bris_eight_furlong_pace_fig: int | None
+    bris_ten_furlong_pace_fig: int | None
+    bris_late_pace_fig: int | None
+    bris_speed_rating: int | None
+    speed_rating: int | None
+    track_variant: int | None
+    two_furlong_fraction: float | None
+    three_furlong_fraction: float | None
+    four_furlong_fraction: float | None
+    five_furlong_fraction: float | None
+    six_furlong_fraction: float | None
+    seven_furlong_fraction: float | None
+    eight_furlong_fraction: float | None
+    ten_furlong_fraction: float | None
+    twelve_furlong_fraction: float | None
+    fourteen_furlong_fraction: float | None
+    sixteen_furlong_fraction: float | None
+    fr1: float | None
+    fr2: float | None
+    fr3: float | None
+    final_time: float | None
+    claimed_code: str | None
+    trainer: str | None
+    jockey: str | None
+    apprentice_weight_allowed: int | None
+    race_type: str | None
+    age_and_sex_restrictions: str | None
+    state_bred_flag: str | None
+    restricted_qualifier_flag: str | None
+    favorite_indicator: str | None
+    front_bandages_indicator: str | None
+    class_speed_par: int | None
+    bar_shoe: str | None
+    company_line_codes: str | None
+    low_claiming_price_of_race: int | None
+    high_claiming_price_of_race: int | None
+    start_code: str | None
+    sealed_track_indicator: str | None
+    all_weather_surface_flag: str | None
+    equibase_abbreviated_race_conditions: str | None
 
     @staticmethod
     def create(row: list[str], number: PastPerformanceNumber) -> 'SingleFilePastPerformance':
@@ -274,7 +274,7 @@ class SingleFilePastPerformance(PastPerformance):
 
 @dataclass
 class SingleFileHorseStats:
-    medication: int
+    medication: int | None
     lifetime_record_todays_distance: SingleFileRecord
     lifetime_record_todays_track: SingleFileRecord
     lifetime_record_turf: SingleFileRecord
@@ -343,58 +343,58 @@ class SingleFileHorseStats:
 
 @dataclass
 class SingleFileHorse(Horse):
-    name: str
-    post_position: int
-    entry: str
-    year_of_birth: int
-    foaling_month: int
-    sex: str
-    color: str
-    weight: int
-    sire: str
-    sires_sire: str
-    dam: str
-    dams_sire: str
-    breeder: str
-    where: str
-    program_post_position: int
-    mto_ae_indicator: str
-    program_number: str
-    morning_line_odds: float
-    claiming_price: int
+    name: str | None
+    post_position: int | None
+    entry: str | None
+    year_of_birth: int | None
+    foaling_month: int | None
+    sex: str | None
+    color: str | None
+    weight: int | None
+    sire: str | None
+    sires_sire: str | None
+    dam: str | None
+    dams_sire: str | None
+    breeder: str | None
+    where: str | None
+    program_post_position: int | None
+    mto_ae_indicator: str | None
+    program_number: str | None
+    morning_line_odds: float | None
+    claiming_price: int | None
     stats: SingleFileHorseStats
-    equipment_change: int
+    equipment_change: int | None
     workouts: list[SingleFileWorkout]
-    bris_run_style_designation: str
-    quirin_speed_points: int
-    lifetime_starts_all_weather_surface: int
-    lifetime_wins_all_weather_surface: int
-    lifetime_places_all_weather_surface: int
-    lifetime_shows_all_weather_surface: int
-    lifetime_earnings_all_weather_surface: int
-    best_bris_speed_all_weather_surface: int
-    bris_prime_power_rating: float
+    bris_run_style_designation: str | None
+    quirin_speed_points: int | None
+    lifetime_starts_all_weather_surface: int | None
+    lifetime_wins_all_weather_surface: int | None
+    lifetime_places_all_weather_surface: int | None
+    lifetime_shows_all_weather_surface: int | None
+    lifetime_earnings_all_weather_surface: int | None
+    best_bris_speed_all_weather_surface: int | None
+    bris_prime_power_rating: float | None
     past_performances: list[SingleFilePastPerformance]
-    sire_stud_fee: int
-    best_bris_speed_fast_track: int
-    best_bris_speed_turf: int
-    best_bris_speed_off_track: int
-    best_bris_speed_distance: int
-    auction_price: int
-    auction_location: str
-    dirt_pedigree_rating: str
-    mud_pedigree_rating: str
-    turf_pedigree_rating: str
-    distance_pedigree_rating: str
-    best_bris_speed_life: int
-    best_bris_speed_most_recent_year: int
-    best_bris_speed_second_most_recent_year: int
-    best_bris_speed_todays_track: int
-    starts_fast_dirt_track: int
-    wins_fast_dirt_track: int
-    places_fast_dirt_track: int
-    shows_fast_dirt_track: int
-    earnings_fast_dirt_track: int
+    sire_stud_fee: int | None
+    best_bris_speed_fast_track: int | None
+    best_bris_speed_turf: int | None
+    best_bris_speed_off_track: int | None
+    best_bris_speed_distance: int | None
+    auction_price: int | None
+    auction_location: str | None
+    dirt_pedigree_rating: str | None
+    mud_pedigree_rating: str | None
+    turf_pedigree_rating: str | None
+    distance_pedigree_rating: str | None
+    best_bris_speed_life: int | None
+    best_bris_speed_most_recent_year: int | None
+    best_bris_speed_second_most_recent_year: int | None
+    best_bris_speed_todays_track: int | None
+    starts_fast_dirt_track: int | None
+    wins_fast_dirt_track: int | None
+    places_fast_dirt_track: int | None
+    shows_fast_dirt_track: int | None
+    earnings_fast_dirt_track: int | None
 
     @staticmethod
     def create(row: list[str]) -> 'SingleFileHorse':
