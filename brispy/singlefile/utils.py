@@ -569,8 +569,8 @@ def get_trainer_jockey_combo_shows(row: list[str]) -> int:
     return __try_get_int(row, SingleFileIndex.TRAINER_JOCKEY_COMBO_SHOWS_INDEX)
 
 
-def get_trainer_jockey_combo_roi(row: list[str]) -> int:
-    return __try_get_int(row, SingleFileIndex.TRAINER_JOCKEY_COMBO_ROI_INDEX)
+def get_trainer_jockey_combo_roi(row: list[str]) -> float:
+    return __try_get_float(row, SingleFileIndex.TRAINER_JOCKEY_COMBO_ROI_INDEX)
 
 
 def get_days_since_last_race(row: list[str]) -> int:
