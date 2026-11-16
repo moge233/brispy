@@ -129,3 +129,13 @@ class TestCompleteRaceConditions(TestCase):
         row = build_row('')[: SingleFileIndex.COMPLETE_RACE_CONDITIONS3_INDEX.value]
         with self.assertRaises(FieldError):
             utils.get_complete_race_conditions(row)
+
+
+class TestTypedPackage(TestCase):
+    """The package ships a PEP 561 marker so type checkers use its annotations."""
+
+    def test_py_typed_marker(self):
+        import brispy
+        from pathlib import Path
+
+        self.assertTrue((Path(brispy.__file__).parent / 'py.typed').is_file())
