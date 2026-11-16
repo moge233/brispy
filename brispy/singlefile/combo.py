@@ -15,7 +15,7 @@ class SingleFileTrainerJockeyCombo:
     lifetime_wins: int                      # 4 digits
     lifetime_places: int                    # 4 digits
     lifetime_shows: int                     # 4 digits
-    lifetime_roi: int                       # 4 digits
+    lifetime_roi: float                     # e.g. -0.60
     meet_starts: int                        # 4 digits
     meet_wins: int                          # 4 digits
     meet_places: int                        # 4 digits
